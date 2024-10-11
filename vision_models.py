@@ -21,6 +21,7 @@ from functools import partial
 from itertools import chain
 from joblib import Memory
 from rich.console import Console
+from openai import AzureOpenAI
 from torch import hub
 from torch.nn import functional as F
 from torchvision import transforms
@@ -36,7 +37,11 @@ cache = Memory('cache/' if config.use_cache else None, verbose=0)
 device = "cuda" if torch.cuda.is_available() else "cpu"
 console = Console(highlight=False)
 HiddenPrints = partial(HiddenPrints, console=console, use_newline=config.multiprocessing)
-
+client = AzureOpenAI(
+    api_key = openai.api_key,
+    api_version = "2023-05-15",
+    azure_endpoint = 'https://katfgroup-gpt4-ce.openai.azure.com/'
+)
 
 # --------------------------- Base abstract model --------------------------- #
 
@@ -961,7 +966,7 @@ def codex_helper(extended_prompt):
     if config.codex.model in ("gpt-4", "gpt-3.5-turbo"):
         if not isinstance(extended_prompt, list):
             extended_prompt = [extended_prompt]
-        responses = [openai.ChatCompletion.create(
+        responses = [client.chat.completions.create(
             model=config.codex.model,
             messages=[
                 # {"role": "system", "content": "You are a helpful assistant."},
@@ -977,7 +982,7 @@ def codex_helper(extended_prompt):
             stop=["\n\n"],
         )
             for prompt in extended_prompt]
-        resp = [r['choices'][0]['message']['content'].replace("execute_command(image)",
+        resp = [r.choices[0].message.content.replace("execute_command(image)",
                                                               "execute_command(image, my_fig, time_wait_between_lines, syntax)")
                 for r in responses]
     #         if len(resp) == 1:
@@ -1020,7 +1025,7 @@ class CodexModel(BaseModel):
             with open(config.fixed_code_file) as f:
                 self.fixed_code = f.read()
 
-    def forward(self, prompt, input_type='image', prompt_file=None, base_prompt=None, extra_context=None):
+    def forward(self, prompt, input_type='image', prompt_file=None, base_prompt=None, extra_context=""):
         if config.use_fixed_code:  # Use the same program for every sample, like in socratic models
             return [self.fixed_code] * len(prompt) if isinstance(prompt, list) else self.fixed_code
 
@@ -1056,7 +1061,7 @@ class CodexModel(BaseModel):
             return response
         try:
             response = codex_helper(extended_prompt)
-        except openai.error.RateLimitError as e:
+        except openai.RateLimitError as e:
             print("Retrying Codex, splitting batch")
             if len(extended_prompt) == 1:
                 warnings.warn("This is taking too long, maybe OpenAI is down? (status.openai.com/)")
