@@ -966,6 +966,10 @@ def codex_helper(extended_prompt):
     if config.codex.model in ("gpt-4", "gpt-3.5-turbo"):
         if not isinstance(extended_prompt, list):
             extended_prompt = [extended_prompt]
+        for i, prompt in enumerate(extended_prompt):
+            with open(f'prompt_{i}.txt', 'w') as f:
+                f.write(prompt)
+            print('saved prompt')
         responses = [client.chat.completions.create(
             model=config.codex.model,
             messages=[
