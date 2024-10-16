@@ -983,7 +983,7 @@ def codex_helper(extended_prompt):
             frequency_penalty=0,
             presence_penalty=0,
             #                 best_of=config.codex.best_of,
-            stop=["\n\n"],
+            #stop=["\n\n"],
         )
             for prompt in extended_prompt]
         resp = [r.choices[0].message.content.replace("execute_command(image)",

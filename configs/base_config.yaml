@@ -48,7 +48,7 @@ gpt3:                                               # GPT-3 configuration
     model: text-davinci-003                         # See openai.Model.list() for available models
 
 codex:
-    temperature: 0.                                 # Temperature for Codex. (Almost) deterministic if 0
+    temperature: 0.                               # Temperature for Codex. (Almost) deterministic if 0
     best_of: 1                                      # Number of tries to choose from. Use when temperature > 0
     max_tokens: 1024                                 # Maximum number of tokens to generate for Codex
     prompt: ./prompts/chatapi.prompt                # Codex prompt file, which defines the API. (doesn't support video for now due to token limits)
