@@ -979,13 +979,16 @@ def codex_helper(extended_prompt):
             ],
             temperature=config.codex.temperature,
             max_tokens=config.codex.max_tokens,
-            top_p=1.,
+            top_p=config.codex.top_p,
             frequency_penalty=0,
             presence_penalty=0,
+            n=config.codex.num_outputs,
             #                 best_of=config.codex.best_of,
             #stop=["\n\n"],
         )
             for prompt in extended_prompt]
+        for choice in responses[0].choices:
+            print(choice.message.content)
         resp = [r.choices[0].message.content.replace("execute_command(image)",
                                                               "execute_command(image, my_fig, time_wait_between_lines, syntax)")
                 for r in responses]
