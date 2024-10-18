@@ -824,17 +824,17 @@ class GPT3Model(BaseModel):
             response_ = []
             for i in range(len(prompts)):
                 if self.model == 'chatgpt':
-                    resp_i = [r['message']['content'] for r in
-                              response['choices'][i * self.n_votes:(i + 1) * self.n_votes]]
+                    resp_i = [r.message.content for r in
+                              response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
                 else:
-                    resp_i = [r['text'] for r in response['choices'][i * self.n_votes:(i + 1) * self.n_votes]]
+                    resp_i = [r.text for r in response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
                 response_.append(self.most_frequent(resp_i).lstrip())
             response = response_
         else:
             if self.model == 'chatgpt':
-                response = [r['message']['content'].lstrip() for r in response['choices']]
+                response = [r.message.content.lstrip() for r in response.choices]
             else:
-                response = [r['text'].lstrip() for r in response['choices']]
+                response = [r.text.lstrip() for r in response.choices]
         return response
 
     def process_guesses_fn(self, prompt):
@@ -855,17 +855,17 @@ class GPT3Model(BaseModel):
             response_ = []
             for i in range(len(prompts)):
                 if self.model == 'chatgpt':
-                    resp_i = [r['message']['content'] for r in
-                              response['choices'][i * self.n_votes:(i + 1) * self.n_votes]]
+                    resp_i = [r.message.content for r in
+                              response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
                 else:
-                    resp_i = [r['text'] for r in response['choices'][i * self.n_votes:(i + 1) * self.n_votes]]
+                    resp_i = [r.text for r in response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
                 response_.append(self.most_frequent(resp_i))
             response = response_
         else:
             if self.model == 'chatgpt':
-                response = [r['message']['content'] for r in response['choices']]
+                response = [r.message.content for r in response.choices]
             else:
-                response = [self.process_answer(r["text"]) for r in response['choices']]
+                response = [self.process_answer(r.text) for r in response.choices]
         return response
 
     def get_qa_fn(self, prompt):
@@ -877,7 +877,7 @@ class GPT3Model(BaseModel):
         response = self.query_gpt3(prompts, model=self.model, max_tokens=256, top_p=1, frequency_penalty=0,
                                    presence_penalty=0)
         if self.model == 'chatgpt':
-            response = [r['message']['content'] for r in response['choices']]
+            response = [r.message.content for r in response.choices]
         else:
             response = [r["text"] for r in response['choices']]
         return response
@@ -886,18 +886,19 @@ class GPT3Model(BaseModel):
                    stop=None, top_p=1, frequency_penalty=0, presence_penalty=0):
         if model == "chatgpt":
             messages = [{"role": "user", "content": p} for p in prompt]
-            response = openai.ChatCompletion.create(
-                model="gpt-3.5-turbo",
+            response = client.chat.completions.create(
+                model="gpt-4",
                 messages=messages,
                 max_tokens=max_tokens,
                 temperature=self.temperature,
             )
         else:
-            response = openai.Completion.create(
-                model=model,
-                prompt=prompt,
+            messages = [{"role": "user", "content": p} for p in prompt]
+            response = client.chat.completions.create(
+                model="gpt-4",
+                messages=messages,
                 max_tokens=max_tokens,
-                logprobs=logprobs,
+               # logprobs=logprobs,
                 temperature=self.temperature,
                 stream=stream,
                 stop=stop,
@@ -1005,9 +1006,9 @@ def codex_helper(extended_prompt):
         )
 
         if isinstance(extended_prompt, list):
-            resp = [r['text'] for r in response['choices']]
+            resp = [r.text for r in response.choices]
         else:
-            resp = response['choices'][0]['text']
+            resp = response.choices[0].text
 
     return resp
 
