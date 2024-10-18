@@ -39,7 +39,7 @@ class OKVQADataset(Dataset):
         "train": ("train2014", "OpenEnded_mscoco_train2014_questions.json", "mscoco_train2014_annotations.json"),
         "test": ("val2014", "OpenEnded_mscoco_val2014_questions.json", "mscoco_val2014_annotations.json")}
 
-    def __init__(self, split, data_path="",
+    def __init__(self, dataset_name, batch_size, start_sample, split, data_path="",
                  image_transforms=None, question_transforms=None, tokenize=None,
                  # answer_selection=most_common_from_dict,
                  answer_selection=all_answers_from_dict,
@@ -93,6 +93,7 @@ class OKVQADataset(Dataset):
 
         if max_samples is not None:
             self.df = self.df.sample(n=max_samples)
+        self.df.to_csv('sample_okvqa/data.csv')
 
         self.n_samples = self.df.shape[0]
         if verbose:
@@ -157,7 +158,7 @@ class OKVQADataset(Dataset):
                       '(', ')', '=', '+', '\\', '_', '-',
                       '>', '<', '@', '`', ',', '?', '!']
 
-    def get_img_path(self, index):
+    def get_sample_path(self, index):
         image_id = self.df.iloc[index]["image_path"]
         image_path = os.path.expanduser(os.path.join(self.data_path, image_id))
         return image_path
@@ -205,9 +206,10 @@ class OKVQADataset(Dataset):
                     'possible_answers': [], 'info_to_prompt': question, 'question_type': -1}
 
         else:
-            return {"sample_id": question_id, 'answer': selected_answers, "img": img, "question": question,
+            return {"sample_id": question_id, 'answer': selected_answers, "image_name": f'sample_okvqa/{image_path}', 
+            "image": img, "query": question,
                     'pil_img': pil_img, 'index': index, 'possible_answers': [], 'info_to_prompt': question,
-                    "question_type": -1}
+                    "query_type": -1, 'extra_context': ''}
 
     def post_process(self, prediction, stem=True):
         """

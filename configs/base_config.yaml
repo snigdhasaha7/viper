@@ -1,13 +1,13 @@
 multiprocessing: False                              # Run the models and samples in parallel
 path_pretrained_models: './pretrained_models'       # Path to the pretrained models
-execute_code: False                                 # Execute the code after generating it. Only applies to main_batch
+execute_code: True                                 # Execute the code after generating it. Only applies to main_batch
 
 dataset:                                            # Dataset configuration
     dataset_name: 'MyDataset'                       # Dataset name
     data_path: 'data'                               # Dataset path
     split: ''                                       # Dataset split. If '', it assumes there is only one split
     max_samples:                                    # Maximum number of samples to load
-    batch_size: 20                                  # Batch size
+    batch_size: 1                                  # Batch size
     start_sample: 0                                 # Start sample index. Only used if max_samples is not None
 
 load_models:                                        # Which pretrained models to load
@@ -45,7 +45,7 @@ gpt3:                                               # GPT-3 configuration
     qa_prompt: ./prompts/gpt3/gpt3_qa.txt
     guess_prompt: ./prompts/gpt3/gpt3_process_guess.txt
     temperature: 0.                                 # Temperature for GPT-3. Almost deterministic if 0
-    model: text-davinci-003                         # See openai.Model.list() for available models
+    model: gpt-4                         # See openai.Model.list() for available models
 
 codex:
     temperature: 0.                               # Temperature for Codex. (Almost) deterministic if 0
