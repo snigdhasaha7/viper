@@ -823,24 +823,17 @@ class GPT3Model(BaseModel):
         if self.n_votes > 1:
             response_ = []
             for i in range(len(prompts)):
-                if self.model == 'chatgpt':
-                    resp_i = [r.message.content for r in
-                              response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
-                else:
-                    resp_i = [r.text for r in response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
+                resp_i = [r.message.content for r in response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
                 response_.append(self.most_frequent(resp_i).lstrip())
             response = response_
         else:
-            if self.model == 'chatgpt':
-                response = [r.message.content.lstrip() for r in response.choices]
-            else:
-                response = [r.text.lstrip() for r in response.choices]
+            response = [r.message.content.lstrip() for r in response.choices]
         return response
 
     def process_guesses_fn(self, prompt):
         # The code is the same as get_qa_fn, but we separate in case we want to modify it later
-        response = self.query_gpt3(prompt, model=self.model, max_tokens=5, logprobs=1, stream=False,
-                                   stop=["\n", "<|endoftext|>"])
+        response = self.query_gpt(prompt, model=self.model, max_tokens=5, logprobs=1, stream=False,
+                                   stop=None)
         return response
 
     def get_qa(self, prompts, prompt_base: str = None) -> list[str]:
@@ -854,59 +847,51 @@ class GPT3Model(BaseModel):
         if self.n_votes > 1:
             response_ = []
             for i in range(len(prompts)):
-                if self.model == 'chatgpt':
-                    resp_i = [r.message.content for r in
-                              response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
-                else:
-                    resp_i = [r.text for r in response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
+                resp_i = [r.message.content for r in response.choices[i * self.n_votes:(i + 1) * self.n_votes]]
                 response_.append(self.most_frequent(resp_i))
             response = response_
         else:
-            if self.model == 'chatgpt':
-                response = [r.message.content for r in response.choices]
-            else:
-                response = [self.process_answer(r.text) for r in response.choices]
+            response = [self.process_answer(r.message.content) for r in response.choices]
         return response
 
     def get_qa_fn(self, prompt):
-        response = self.query_gpt3(prompt, model=self.model, max_tokens=5, logprobs=1, stream=False,
-                                   stop=["\n", "<|endoftext|>"])
+        response = self.query_gpt(prompt, model=self.model, max_tokens=5, stream=False,
+                                   stop=None)
         return response
 
     def get_general(self, prompts) -> list[str]:
-        response = self.query_gpt3(prompts, model=self.model, max_tokens=256, top_p=1, frequency_penalty=0,
+        response = self.query_gpt(prompts, model=self.model, max_tokens=256, top_p=1, frequency_penalty=0,
                                    presence_penalty=0)
-        if self.model == 'chatgpt':
-            response = [r.message.content for r in response.choices]
-        else:
-            response = [r["text"] for r in response['choices']]
+        response = [r.message.content for r in response.choices]
         return response
 
-    def query_gpt3(self, prompt, model="text-davinci-003", max_tokens=16, logprobs=None, stream=False,
+    def query_gpt(self, prompt, model="gpt-4o", max_tokens=16, stream=False,
                    stop=None, top_p=1, frequency_penalty=0, presence_penalty=0):
-        if model == "chatgpt":
-            messages = [{"role": "user", "content": p} for p in prompt]
-            response = client.chat.completions.create(
-                model="gpt-4",
-                messages=messages,
-                max_tokens=max_tokens,
-                temperature=self.temperature,
+        messages = []
+        for p in prompt:
+            messages.append(
+                {
+                    "role": "user",
+                    "content": [
+                        {
+                            "type": "text",
+                            "text": p,
+                        },
+                    ],
+                }
             )
-        else:
-            messages = [{"role": "user", "content": p} for p in prompt]
-            response = client.chat.completions.create(
-                model="gpt-4",
-                messages=messages,
-                max_tokens=max_tokens,
-               # logprobs=logprobs,
-                temperature=self.temperature,
-                stream=stream,
-                stop=stop,
-                top_p=top_p,
-                frequency_penalty=frequency_penalty,
-                presence_penalty=presence_penalty,
-                n=self.n_votes,
-            )
+        response = client.chat.completions.create(
+            model=model,
+            messages=messages,
+            max_tokens=max_tokens,
+            temperature=self.temperature,
+            stream=stream,
+            stop=stop,
+            top_p=top_p,
+            frequency_penalty=frequency_penalty,
+            presence_penalty=presence_penalty,
+            n=self.n_votes,
+        )        
         return response
 
     def forward(self, prompt, process_name):
@@ -964,7 +949,7 @@ def codex_helper(extended_prompt):
     assert 0 <= config.codex.temperature <= 1
     assert 1 <= config.codex.best_of <= 20
 
-    if config.codex.model in ("gpt-4", "gpt-3.5-turbo"):
+    if config.codex.model in ("gpt-4", "gpt-4o", "gpt-3.5-turbo"):
         if not isinstance(extended_prompt, list):
             extended_prompt = [extended_prompt]
         # for i, prompt in enumerate(extended_prompt):
@@ -979,16 +964,20 @@ def codex_helper(extended_prompt):
             ],
             temperature=config.codex.temperature,
             max_tokens=config.codex.max_tokens,
-            top_p=1.,
+            top_p=config.codex.top_p,
             frequency_penalty=0,
             presence_penalty=0,
+            n=config.codex.num_outputs,
             #                 best_of=config.codex.best_of,
             #stop=["\n\n"],
         )
             for prompt in extended_prompt]
+        for choice in responses[0].choices:
+            print(choice.message.content)
         resp = [r.choices[0].message.content.replace("execute_command(image)",
                                                               "execute_command(image, my_fig, time_wait_between_lines, syntax)")
                 for r in responses]
+        resp = [r.replace("```python", "").replace("```", "").strip() for r in resp]
     #         if len(resp) == 1:
     #             resp = resp[0]
     else:
