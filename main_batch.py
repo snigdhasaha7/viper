@@ -169,10 +169,8 @@ def main():
                 if not config.use_cached_codex:
                     codes = codex(prompt=batch['query'], base_prompt=base_prompt, input_type=input_type,
                                   extra_context=batch['extra_context'])
-
                 else:
                     codes = codes_all[i * batch_size:(i + 1) * batch_size]  # If cache
-
                 # Run the code
                 if config.execute_code:
                     if not config.multiprocessing:
