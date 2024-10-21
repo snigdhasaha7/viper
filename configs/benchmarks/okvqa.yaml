@@ -12,7 +12,7 @@ prompt: ./prompts/benchmarks/okvqa.prompt
 results_dir: ./results/okvqa/
 
 load_models:
-    maskrcnn: False
+    maskrcnn: True
     clip: False
     glip: True
     owlvit: False
@@ -20,7 +20,7 @@ load_models:
     gpt3_list: True
     gpt3_qa: True
     gpt3_guess: True
-    depth: False
+    depth: True
     blip: True
     saliency: False
     xvlm: True

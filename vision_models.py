@@ -972,8 +972,8 @@ def codex_helper(extended_prompt):
             #stop=["\n\n"],
         )
             for prompt in extended_prompt]
-        for choice in responses[0].choices:
-            print(choice.message.content)
+        # for choice in responses[0].choices:
+        #     print(choice.message.content)
         resp = [r.choices[0].message.content.replace("execute_command(image)",
                                                               "execute_command(image, my_fig, time_wait_between_lines, syntax)")
                 for r in responses]

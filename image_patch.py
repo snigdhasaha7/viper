@@ -331,6 +331,8 @@ class ImagePatch:
         return self.left <= right and self.right >= left and self.lower <= upper and self.upper >= lower
 
     def llm_query(self, question: str, long_answer: bool = True) -> str:
+        if 'this' in question:
+            return self.simple_query(question)
         return llm_query(question, None, long_answer)
 
     def print_image(self, size: tuple[int, int] = None):
