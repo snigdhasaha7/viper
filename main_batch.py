@@ -165,10 +165,19 @@ def main():
 
                 # Combine all queries and get Codex predictions for them
                 # TODO compute Codex for next batch as current batch is being processed
-
                 if not config.use_cached_codex:
-                    codes = codex(prompt=batch['query'], base_prompt=base_prompt, input_type=input_type,
+                    codes, funcs = codex(prompt=batch['query'], base_prompt=base_prompt, input_type=input_type,
                                   extra_context=batch['extra_context'])
+                    joined_funcs = '\n\n\n'.join(funcs)
+                    funcs_str = (
+                                f"query: {batch['query']}\n\n"
+                                f"sample_id: {batch['sample_id']}\n\n"
+                                f"image: {batch['image_name']}\n\n"
+                                f"code samples: \n\n\n{joined_funcs}"
+                            )
+                    with open(f"results/sample_okvqa/{batch['sample_id']}.txt", 'w') as f:
+                        f.write(funcs_str)
+                    
                 else:
                     codes = codes_all[i * batch_size:(i + 1) * batch_size]  # If cache
                 # Run the code

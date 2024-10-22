@@ -48,13 +48,13 @@ gpt3:                                               # GPT-3 configuration
     model: gpt-4o                         # See openai.Model.list() for available models
 
 codex:
-    temperature: 0.2                               # Temperature for Codex. (Almost) deterministic if 0
-    top_p: 1.0                                     # Top p for Codex
+    temperature: 1                               # Temperature for Codex. (Almost) deterministic if 0
+    top_p: 0.95                                     # Top p for Codex
     best_of: 1                                      # Number of tries to choose from. Use when temperature > 0
     max_tokens: 1024                                 # Maximum number of tokens to generate for Codex
     prompt: ./prompts/chatapi.prompt                # Codex prompt file, which defines the API. (doesn't support video for now due to token limits)
     model: gpt-4o                           # Codex model to use. [code-davinci-002, gpt-3.5-turbo, gpt-4]. See openai.Model.list() for available models
-    num_outputs: 1
+    num_outputs: 10
 
 # Saving and loading parameters
 save: True                                          # Save the results to a file

@@ -972,8 +972,9 @@ def codex_helper(extended_prompt):
             #stop=["\n\n"],
         )
             for prompt in extended_prompt]
-        # for choice in responses[0].choices:
-        #     print(choice.message.content)
+        funcs = []
+        for choice in responses[0].choices:
+            funcs.append(choice.message.content)
         resp = [r.choices[0].message.content.replace("execute_command(image)",
                                                               "execute_command(image, my_fig, time_wait_between_lines, syntax)")
                 for r in responses]
@@ -981,6 +982,7 @@ def codex_helper(extended_prompt):
     #         if len(resp) == 1:
     #             resp = resp[0]
     else:
+        funcs = []
         warnings.warn('OpenAI Codex is deprecated. Please use GPT-4 or GPT-3.5-turbo.')
         response = openai.Completion.create(
             model="code-davinci-002",
@@ -999,7 +1001,7 @@ def codex_helper(extended_prompt):
         else:
             resp = response.choices[0].text
 
-    return resp
+    return resp, funcs
 
 
 class CodexModel(BaseModel):
@@ -1053,7 +1055,7 @@ class CodexModel(BaseModel):
                 response += self.forward_(extended_prompt[i:i + self.max_batch_size])
             return response
         try:
-            response = codex_helper(extended_prompt)
+            response, funcs = codex_helper(extended_prompt)
         except openai.RateLimitError as e:
             print("Retrying Codex, splitting batch")
             if len(extended_prompt) == 1:
@@ -1076,7 +1078,7 @@ class CodexModel(BaseModel):
             print("Retrying Codex")
             print(e)
             response = self.forward_(extended_prompt)
-        return response
+        return response, funcs
 
 
 class CodeLlama(CodexModel):

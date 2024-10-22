@@ -3,7 +3,7 @@ dataset:
     dataset_name: OKVQA
     split: test
     testing: False
-    max_samples:
+    max_samples: 10
     batch_size: 1
     start_sample: 0
 
