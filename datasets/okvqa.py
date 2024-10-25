@@ -93,7 +93,7 @@ class OKVQADataset(Dataset):
 
         if max_samples is not None:
             self.df = self.df.sample(n=max_samples)
-        self.df.to_csv('sample_okvqa/data.csv')
+       # self.df.to_csv('sample_okvqa/data.csv')
 
         self.n_samples = self.df.shape[0]
         if verbose:
@@ -241,11 +241,19 @@ class OKVQADataset(Dataset):
             score (float): Score of the prediction.
         """
         assert len(prediction) == len(ground_truth)
+        n = len(prediction)
+        #score = 0
+        # for p, g in zip(prediction, ground_truth):
+        #     # There are 10 answers per question (10 annotators), most of them are the same
+        #     item_score = self.get_item_score(p, g)
+        #     score += item_score
         score = 0
-        for p, g in zip(prediction, ground_truth):
-            # There are 10 answers per question (10 annotators), most of them are the same
-            item_score = self.get_item_score(p, g)
-            score += item_score
+        for i in range(n):
+            max_score = 0
+            for p in prediction[i]:
+                item_score = self.get_item_score(p, ground_truth[i])
+                max_score = max(max_score, item_score)
+            score += max_score
 
         return score / len(prediction)
 

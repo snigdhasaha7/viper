@@ -949,7 +949,7 @@ def codex_helper(extended_prompt):
     assert 0 <= config.codex.temperature <= 1
     assert 1 <= config.codex.best_of <= 20
 
-    if config.codex.model in ("gpt-4", "gpt-4o", "gpt-3.5-turbo"):
+    if config.codex.model in ("gpt-4", "gpt-4o", "gpt-35-turbo"):
         if not isinstance(extended_prompt, list):
             extended_prompt = [extended_prompt]
         # for i, prompt in enumerate(extended_prompt):
@@ -973,14 +973,15 @@ def codex_helper(extended_prompt):
         )
             for prompt in extended_prompt]
         funcs = []
-        for choice in responses[0].choices:
-            funcs.append(choice.message.content)
-        resp = [r.choices[0].message.content.replace("execute_command(image)",
+        # for choice in responses[0].choices:
+        #     funcs.append(choice.message.content)
+        # resp = [r.choices[0].message.content.replace("execute_command(image)",
+        #                                                       "execute_command(image, my_fig, time_wait_between_lines, syntax)")
+        #         for r in responses]
+        resp = [choice.message.content.replace("execute_command(image)",
                                                               "execute_command(image, my_fig, time_wait_between_lines, syntax)")
-                for r in responses]
+                for choice in responses[0].choices]    
         resp = [r.replace("```python", "").replace("```", "").strip() for r in resp]
-    #         if len(resp) == 1:
-    #             resp = resp[0]
     else:
         funcs = []
         warnings.warn('OpenAI Codex is deprecated. Please use GPT-4 or GPT-3.5-turbo.')

@@ -239,14 +239,11 @@ class ImagePatch:
 
     def llm_query(self, question: str, long_answer: bool = True) -> str:
         '''Answers a text question using GPT-3. The input question is always a formatted string with a variable in it.
-        There is no reference to the image in the question. If there are items to ask about, the query must be specific
-        as to what those items are. 
 
         Parameters
         ----------
         question: str
             the text question to ask. Must not contain any reference to 'the image' or 'the photo', etc.
-            If there is a question related to elements of the image, the query should specify what those elements are.
         long_answer: bool
             whether to return a short answer or a long answer. Short answers are one or at most two words, very concise.
             Long answers are longer, and may be paragraphs and explanations. Defalt is True (so long answer).
@@ -334,7 +331,6 @@ def coerce_to_numeric(string):
     return coerce_to_numeric(string)
 
 Write a function using Python and the ImagePatch class (above) that could be executed to provide an answer to the query. 
-The function should only take an image as input, and use the ImagePatch class above to deduce all information needed.
 
 Consider the following guidelines:
 - Use base Python (comparison, sorting) for basic logical operations, left/right/up/down, math, etc.
