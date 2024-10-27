@@ -39,7 +39,7 @@ def my_collate(batch):
 
 
 def run_program(parameters, queues_in_, input_type_, retrying=False):
-    from image_patch import ImagePatch, llm_query, best_image_match, distance, bool_to_yesno
+    from image_patch import ImagePatch, llm_query, best_image_match, distance, bool_to_yesno, process_guesses
     from video_segment import VideoSegment
 
     global queue_results
@@ -49,7 +49,7 @@ def run_program(parameters, queues_in_, input_type_, retrying=False):
     code_header = f'def execute_command_{sample_id}(' \
                   f'{input_type_}, possible_answers, query, ' \
                   f'ImagePatch, VideoSegment, ' \
-                  'llm_query, bool_to_yesno, distance, best_image_match):\n' \
+                  'llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n' \
                   f'    # Answer is:'
     code = code_header + code
 
@@ -71,6 +71,7 @@ def run_program(parameters, queues_in_, input_type_, retrying=False):
     image_patch_partial = partial(ImagePatch, queues=queues)
     video_segment_partial = partial(VideoSegment, queues=queues)
     llm_query_partial = partial(llm_query, queues=queues)
+    process_guesses_partial = partial(process_guesses, queues=queues)
 
     try:
         result = globals()[f'execute_command_{sample_id}'](
@@ -79,7 +80,7 @@ def run_program(parameters, queues_in_, input_type_, retrying=False):
             # Classes to be used
             image_patch_partial, video_segment_partial,
             # Functions to be used
-            llm_query_partial, bool_to_yesno, distance, best_image_match)
+            llm_query_partial, bool_to_yesno, distance, best_image_match, process_guesses_partial)
     except Exception as e:
         # print full traceback
         traceback.print_exc()
@@ -155,6 +156,7 @@ def main():
     all_img_paths = []
     all_possible_answers = []
     all_query_types = []
+    all_accuracies = []
 
     with mp.Pool(processes=num_processes, initializer=worker_init, initargs=(queues_results,)) \
             if config.multiprocessing else open(os.devnull, "w") as pool:
@@ -210,6 +212,9 @@ def main():
                 all_possible_answers += batch['possible_answers']
                 all_query_types += batch['query_type']
                 all_queries += batch['query']
+                accuracies = [dataset.get_item_score(r[0], batch['answer'][0]) for r in results]
+                all_accuracies += accuracies
+                
                 all_img_paths += [dataset.get_sample_path(idx) for idx in batch['index']]
                 if i % config.log_every == 0:
                     try:
@@ -227,6 +232,7 @@ def main():
     try:
         accuracy = dataset.accuracy(all_results, all_answers, all_possible_answers, all_query_types)
         console.print(f'Final accuracy: {accuracy}')
+        
     except Exception as e:
         print(f'Error computing accuracy: {e}')
 
@@ -245,8 +251,8 @@ def main():
                                                  str.isnumeric(ef.stem.split('_')[-1])]) + 1) + '.csv'
         print('Saving results to', filename)
         df = pd.DataFrame([all_results, all_answers, all_codes, all_ids, all_queries, all_img_paths,
-                           all_possible_answers]).T
-        df.columns = ['result', 'answer', 'code', 'id', 'query', 'img_path', 'possible_answers']
+                           all_possible_answers, all_accuracies]).T
+        df.columns = ['result', 'answer', 'code', 'id', 'query', 'img_path', 'possible_answers', 'accuracy']
         # make the result column a string
         df['result'] = df['result'].apply(str)
         df.to_csv(results_dir / filename, header=True, index=False, encoding='utf-8')

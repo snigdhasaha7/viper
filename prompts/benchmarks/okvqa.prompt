@@ -127,19 +127,5 @@ def execute_command(image)->str:
     guesses.append(direct_guess)
     return process_guesses("Should you bake or roast this item?", guesses)
 
-# Where can I get a laptop like the one found here?
-def execute_command(image)->str:
-    # The question is not direct perception, so we need to ask the image for more information
-    # Salient information: what kind of laptop is this?
-    image = ImagePatch(image)
-    guesses = []
-    laptop_type = image.simple_query("What kind of laptop is this?")
-    external_knowledge_query = "Where can I get a {} like the one found here?".format(laptop_type)
-    step_by_step_guess = llm_query(external_knowledge_query)
-    guesses.append("what kind of laptop is this is {}".format(laptop_type) + ", so " + step_by_step_guess)
-    direct_guess = image.simple_query("Where can I get a laptop like the one found here?")
-    guesses.append(direct_guess)
-    return process_guesses("Where can I get a laptop like the one found here?", guesses)
-
 # INSERT_PROMPT_HERE
 def execute_command(image)->str:

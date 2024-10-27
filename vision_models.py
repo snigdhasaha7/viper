@@ -832,7 +832,7 @@ class GPT3Model(BaseModel):
 
     def process_guesses_fn(self, prompt):
         # The code is the same as get_qa_fn, but we separate in case we want to modify it later
-        response = self.query_gpt(prompt, model=self.model, max_tokens=5, logprobs=1, stream=False,
+        response = self.query_gpt(prompt, model=self.model, max_tokens=5, stream=False,
                                    stop=None)
         return response
 
@@ -949,58 +949,31 @@ def codex_helper(extended_prompt):
     assert 0 <= config.codex.temperature <= 1
     assert 1 <= config.codex.best_of <= 20
 
-    if config.codex.model in ("gpt-4", "gpt-4o", "gpt-35-turbo"):
-        if not isinstance(extended_prompt, list):
-            extended_prompt = [extended_prompt]
-        # for i, prompt in enumerate(extended_prompt):
-        #     with open(f'prompt_{i}.txt', 'w') as f:
-        #         f.write(prompt)
-        responses = [client.chat.completions.create(
-            model=config.codex.model,
-            messages=[
-                # {"role": "system", "content": "You are a helpful assistant."},
-                {"role": "system", "content": "Only answer with a function starting def execute_command."},
-                {"role": "user", "content": prompt}
-            ],
-            temperature=config.codex.temperature,
-            max_tokens=config.codex.max_tokens,
-            top_p=config.codex.top_p,
-            frequency_penalty=0,
-            presence_penalty=0,
-            n=config.codex.num_outputs,
-            #                 best_of=config.codex.best_of,
-            #stop=["\n\n"],
-        )
-            for prompt in extended_prompt]
-        funcs = []
-        # for choice in responses[0].choices:
-        #     funcs.append(choice.message.content)
-        # resp = [r.choices[0].message.content.replace("execute_command(image)",
-        #                                                       "execute_command(image, my_fig, time_wait_between_lines, syntax)")
-        #         for r in responses]
-        resp = [choice.message.content.replace("execute_command(image)",
-                                                              "execute_command(image, my_fig, time_wait_between_lines, syntax)")
-                for choice in responses[0].choices]    
-        resp = [r.replace("```python", "").replace("```", "").strip() for r in resp]
-    else:
-        funcs = []
-        warnings.warn('OpenAI Codex is deprecated. Please use GPT-4 or GPT-3.5-turbo.')
-        response = openai.Completion.create(
-            model="code-davinci-002",
-            temperature=config.codex.temperature,
-            prompt=extended_prompt,
-            max_tokens=config.codex.max_tokens,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=0,
-            best_of=config.codex.best_of,
-            stop=["\n\n"],
-        )
-
-        if isinstance(extended_prompt, list):
-            resp = [r.text for r in response.choices]
-        else:
-            resp = response.choices[0].text
+    if not isinstance(extended_prompt, list):
+        extended_prompt = [extended_prompt]
+    # for i, prompt in enumerate(extended_prompt):
+    #     with open(f'prompt_{i}.txt', 'w') as f:
+    #         f.write(prompt)
+    # import ipdb; st = ipdb.set_trace; st()
+    responses = [client.chat.completions.create(
+        model=config.codex.model,
+        messages=[
+            # {"role": "system", "content": "Only answer with a function starting def execute_command."},
+            {"role": "user", "content": prompt}
+        ],
+        temperature=config.codex.temperature,
+        max_tokens=config.codex.max_tokens,
+        top_p=config.codex.top_p,
+        frequency_penalty=0,
+        presence_penalty=0,
+        n=config.codex.num_outputs,
+    )
+        for prompt in extended_prompt]
+    funcs = []
+    resp = [choice.message.content.replace("execute_command(image)",
+                                                            "execute_command(image, my_fig, time_wait_between_lines, syntax)")
+            for choice in responses[0].choices]    
+    resp = [r.replace("```python", "").replace("```", "").strip() for r in resp]
 
     return resp, funcs
 
