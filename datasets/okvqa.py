@@ -13,21 +13,43 @@ import re
 
 from datasets import general_postprocessing, all_answers_from_dict
 
+
 import nltk
-nltk.download("punkt")
+from nltk.stem import WordNetLemmatizer
 from nltk.tokenize import word_tokenize
-from nltk.stem import PorterStemmer
+
+# Below is used in vipergpt, but stems most words improperly
+# from nltk.stem import PorterStemmer
+# def stem_sentence(sentence):
+#     stemmer = PorterStemmer()
+#     tokenized_words = word_tokenize(sentence)
+#     stemmed_words = [stemmer.stem(word) for word in tokenized_words]
+#     return ' '.join(stemmed_words)
+
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('averaged_perceptron_tagger')
+nltk.download('omw-1.4')
+
+def get_wordnet_pos(word):
+    """Map POS tag to first character lemmatize() accepts"""
+    tag = nltk.pos_tag([word])[0][1][0].upper()
+    tag_dict = {"J": nltk.corpus.wordnet.ADJ,
+                "N": nltk.corpus.wordnet.NOUN,
+                "V": nltk.corpus.wordnet.VERB,
+                "R": nltk.corpus.wordnet.ADV}
+
+    return tag_dict.get(tag, nltk.corpus.wordnet.NOUN)
 
 def stem_sentence(sentence):
-    stemmer = PorterStemmer()
+    lemmatizer = WordNetLemmatizer()
     tokenized_words = word_tokenize(sentence)
-    stemmed_words = [stemmer.stem(word) for word in tokenized_words]
-    return ' '.join(stemmed_words)
+    lemmatized_words = [lemmatizer.lemmatize(word, get_wordnet_pos(word)) for word in tokenized_words]
+    return ' '.join(lemmatized_words)
 
 def most_common_from_dict(dct):
     lst = [x["answer"] for x in dct]
     return max(set(lst), key=lst.count)
-
 
 def most_common_from_dict_raw(dct):
     lst = [x["raw_answer"] for x in dct]
@@ -265,12 +287,12 @@ class OKVQADataset(Dataset):
         accs = []
         for i, g_ in enumerate(g):
             other_answers = [item for j, item in enumerate(g) if i != j] # if it's 'other indices' instead of 'other answers'
-            # for g_ in g:
-            #     other_answers = [item for item in g if item != g_]
-            matching_answers = [item for item in other_answers if item == p]
+            matching_answers = [item for item in other_answers if item.strip().lower() == p]
             acc = min(1., float(len(matching_answers)) / 3)
             accs.append(acc)
         item_score = sum(accs) / len(accs)
+        # if 'equus quagga' in g:
+        #     import ipdb; st = ipdb.set_trace; st()
         return item_score
 
     def processPunctuation(self, inText):
