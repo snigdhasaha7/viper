@@ -1,0 +1,1 @@
+CONFIG_NAMES=benchmarks/okvqav2_top5_500 python main_batch.py
