@@ -72,7 +72,6 @@ class OKVQADataset(Dataset):
         image_transforms
         question_transforms
         """
-        self.stemmer = PorterStemmer()
         
         start_time = time.time()
         self.split = split
