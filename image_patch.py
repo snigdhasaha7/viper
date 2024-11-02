@@ -44,7 +44,7 @@ class ImagePatch:
         Returns True if the property is met, and False otherwise.
     best_text_match(option_list: List[str], prefix: str)->str
         Returns the string that best matches the image.
-    simple_query(question: str=None)->str
+    visual_question_answering(question: str=None)->str
         Returns the answer to a basic question asked about the image. If no question is provided, returns the answer
         to "What is this?".
     compute_depth()->float
@@ -81,6 +81,7 @@ class ImagePatch:
             image = torch.tensor(image).permute(1, 2, 0)
         elif isinstance(image, torch.Tensor) and image.dtype == torch.uint8:
             image = image / 255
+        
 
         if left is None and right is None and upper is None and lower is None:
             self.cropped_image = image
@@ -89,6 +90,18 @@ class ImagePatch:
             self.right = image.shape[2]  # width
             self.upper = image.shape[1]  # height
         else:
+            if upper is None:
+                upper = image.shape[1]
+            if lower is None:
+                lower = 0
+            if left is None:
+                left = 0
+            if right is None:
+                right = image.shape[2]
+            left = int(left) 
+            lower = int(lower)
+            right = int(right)
+            upper = int(upper)
             self.cropped_image = image[:, image.shape[1]-upper:image.shape[1]-lower, left:right]
             self.left = left + parent_left
             self.upper = upper + parent_lower
@@ -110,6 +123,10 @@ class ImagePatch:
             raise Exception("ImagePatch has no area")
 
         self.possible_options = load_json('./useful_lists/possible_options.json')
+        self.patch_description_string = f"{self.upper} {self.left} {self.lower} {self.right}"
+
+    def __str__(self):
+        return self.patch_description_string
 
     def forward(self, model_name, *args, **kwargs):
         return forward(model_name, *args, queues=self.queues, **kwargs)
@@ -169,16 +186,27 @@ class ImagePatch:
             object_name = object_name.lower().replace("number", "").strip()
 
             object_name = w2n.word_to_num(object_name)
-            answer = self.simple_query("What number is written in the image (in digits)?")
+            answer = self.visual_question_answering("What number is written in the image (in digits)?")
             return w2n.word_to_num(answer) == object_name
 
         patches = self.find(object_name)
 
         filtered_patches = []
         for patch in patches:
-            if "yes" in patch.simple_query(f"Is this a {object_name}?"):
+            if "yes" in patch.visual_question_answering(f"Is this a {object_name}?"):
                 filtered_patches.append(patch)
         return len(filtered_patches) > 0
+
+    def expand_patch_with_surrounding(self):
+        # Expand the image patch to include the surroundings. Now done by keeping the center of the patch 
+        # and returns a patch with double width and height
+
+        new_left = max(self.left - self.width / 2, 0) 
+        new_right = min(self.right + self.width / 2, self.original_image.shape[0]) 
+        new_lower = max(self.lower - self.height / 2,0) 
+        new_upper = min(self.upper + self.height / 2, self.original_image.shape[1])
+
+        return ImagePatch(self.original_image, new_left, new_lower,new_right, new_upper)
 
     def _score(self, category: str, negative_categories=None, model='clip') -> float:
         """
@@ -250,7 +278,7 @@ class ImagePatch:
 
         return option_list[selected]
 
-    def simple_query(self, question: str):
+    def visual_question_answering(self, question: str):
         """Returns the answer to a basic question asked about the image. If no question is provided, returns the answer
         to "What is this?". The questions are about basic perception, and are not meant to be used for complex reasoning
         or external knowledge.
@@ -270,9 +298,8 @@ class ImagePatch:
         float
             the median depth of the image crop
         """
-        original_image = self.original_image
-        depth_map = self.forward('depth', original_image)
-        depth_map = depth_map[original_image.shape[1]-self.upper:original_image.shape[1]-self.lower,
+        depth_map = self.forward('depth', self.original_image)
+        depth_map = depth_map[self.original_image.shape[1]-self.upper:self.original_image.shape[1]-self.lower,
                               self.left:self.right]
         return depth_map.median()  # Ideally some kind of mode, but median is good enough for now
 
@@ -309,26 +336,23 @@ class ImagePatch:
         return ImagePatch(self.cropped_image, left, lower, right, upper, self.left, self.lower, queues=self.queues,
                           parent_img_patch=self)
 
-    def overlaps_with(self, left, lower, right, upper):
-        """Returns True if a crop with the given coordinates overlaps with this one,
+    def overlaps(self, patch):
+        """Returns True if a patch overlaps with this one,
         else False.
         Parameters
         ----------
-        left : int
-            the left border of the crop to be checked
-        lower : int
-            the lower border of the crop to be checked
-        right : int
-            the right border of the crop to be checked
-        upper : int
-            the upper border of the crop to be checked
+        patch: ImagePatch object 
 
         Returns
         -------
         bool
             True if a crop with the given coordinates overlaps with this one, else False
         """
-        return self.left <= right and self.right >= left and self.lower <= upper and self.upper >= lower
+        if patch.right < self.left or self.right < patch.left: 
+            return False
+        if patch.lower > self.upper or self.lower > patch.upper:
+            return False
+        return True
 
     def llm_query(self, question: str, long_answer: bool = True) -> str:
         return llm_query(question, None, long_answer)
@@ -419,6 +443,19 @@ def bool_to_yesno(bool_answer: bool) -> str:
     """
     return "yes" if bool_answer else "no"
 
+def formatting_answer(answer, queues=None):  
+    final_answer = ""
+    if isinstance(answer, str ):
+        final_answer = answer.strip()
+    elif isinstance(answer, bool):
+        final_answer = "yes" if answer else "no"
+    elif isinstance(answer, list):
+        final_answer = ", ".join([ str(x) for x in answer]) 
+    else:
+        final_answer = str(answer)
+
+    #print (f"Program output: {final_answer}")
+    return final_answer
 
 def llm_query(query, context=None, long_answer=True, queues=None):
     """Answers a text question using GPT-3. The input question is always a formatted string with a variable in it.
