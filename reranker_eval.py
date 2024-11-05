@@ -15,8 +15,9 @@ for d in data:
     if acc >= 0.5:
         acc = 1.0
     y_true.append(acc)
-    y_score.append(d['score'] / 10)
-    accuracy += (d['accuracy'] == 1 and d['score'] >= 5) or (d['accuracy'] == 0 and d['score'] < 5)
+    acc_score = (d['accuracy'] == 1 and d['score'] >= 5) or (d['accuracy'] == 0 and d['score'] < 5)
+    y_score.append(acc_score)
+    accuracy += acc_score
 
 print(f'Accuracy of Verifier: {accuracy / len(y_true)}')
 
