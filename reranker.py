@@ -65,6 +65,8 @@ for data in tqdm.tqdm(top1data):
     rerank_scores.append({
         'query': query,
         'answer': answer,
+        'gt': data['answer'],
+        'img_path': img,
         'accuracy': data['accuracy'][0],
         'thought': thought,
         'score': score
