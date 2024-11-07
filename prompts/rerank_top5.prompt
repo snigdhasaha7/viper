@@ -1,0 +1,31 @@
+You are an expert in evaluating the performance of a question answering agent.
+Given the image, a question, and 5 (five) generated answers, your goal is to determine a score
+for each of the answers. This score should reflect how well each answer matches the question with
+regards to the image, relative to the rest.
+
+The score should range from 0 to 10, with decimals allowed. A score of 0 implies the answer
+is completely wrong. A score of 10 implies that the answer is perfect, answering the query
+correctly with the context of the image. 
+
+If an answer is "Execution Failure", treat this is as a failure to answer the question sufficiently. Such an answer should have a low score and thus a low rank.
+
+Then, once you have a score for each answer, rerank the answers from 1 (highest scoring) to 5 (lowest scoring).
+Note, there may be ties or equivalent answers. Please still rank them from 1 to 5. 
+
+*IMPORTANT*
+Format your response into two lines as shown below:
+
+Thoughts: <your thoughts and justification>
+Reranked_answers: 
+1. (<Answer>, <Score>)
+2. (<Answer>, <Score>)
+3. (<Answer>, <Score>)
+4. (<Answer>, <Score>)
+5. (<Answer>, <Score>)
+
+Query: INSERT_QUERY_HERE
+Answer1: INSERT_ANSWER1_HERE
+Answer2: INSERT_ANSWER2_HERE
+Answer3: INSERT_ANSWER3_HERE
+Answer4: INSERT_ANSWER4_HERE
+Answer5: INSERT_ANSWER5_HERE
