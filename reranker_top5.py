@@ -66,14 +66,17 @@ for data in tqdm.tqdm(top1data):
     text = response.choices[0].message.content
 
     try:
-        thoughts_match = re.search(r'Thoughts: (.*?)(?=\n\nReranked_answers:)', text, re.DOTALL)
-        thought = thoughts_match.group(1).strip() if thoughts_match else ''
+        thoughts_index = text.index('Thoughts: ')
+        reranked_index = text.index('Reranked_answers:')
+
+        thought = text[thoughts_index+11:reranked_index].strip()
 
         ans1_ind = text.index('1. ')
         ans2_ind = text.index('2. ')
         ans3_ind = text.index('3. ')
         ans4_ind = text.index('4. ')
         ans5_ind = text.index('5. ')
+
         ans1 = text[ans1_ind+3:ans2_ind].strip()
         ans2 = text[ans2_ind+3:ans3_ind].strip()
         ans3 = text[ans3_ind+3:ans4_ind].strip()

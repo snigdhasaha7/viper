@@ -13,7 +13,7 @@ Then, once you have a score for each answer, rerank the answers from 1 (highest 
 Note, there may be ties or equivalent answers. Please still rank them from 1 to 5. 
 
 *IMPORTANT*
-Format your response into two lines as shown below:
+Format your response into two lines as shown below. When ranking an answer, only provide the rank, the answer, and the score. Do not provide any enumeration from the input (such as Answer1):
 
 Thoughts: <your thoughts and justification>
 Reranked_answers: 
