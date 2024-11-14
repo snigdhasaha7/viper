@@ -7,7 +7,7 @@ dataset = OKVQADataset(dataset_name='OKVQA', data_path='sample_okvqa', split='te
                         image_transforms=transforms.Compose([transforms.ToTensor()]))
 
 
-rerank_file = 'top5_rerank.json'
+rerank_file = 'top5_rerank_6.json'
 with open(f'rerank_results/{rerank_file}', 'r') as f:
     data = json.load(f) 
 

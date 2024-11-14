@@ -26,6 +26,7 @@ from torch import hub
 from torch.nn import functional as F
 from torchvision import transforms
 from typing import List, Union
+import re
 
 from configs import config
 from utils import HiddenPrints
@@ -970,9 +971,24 @@ def codex_helper(extended_prompt):
     )
         for prompt in extended_prompt]
     funcs = []
-    resp = [choice.message.content.replace("execute_command(image)",
-                                                            "execute_command(image, my_fig, time_wait_between_lines, syntax)")
-            for choice in responses[0].choices]    
+    programs = responses[0].choices[0].message.content
+
+    # Regular expression to match each code snippet without the header
+    pattern = r'# CODE_SNIPPET_\d+:\n([\s\S]+?)(?=\n# CODE_SNIPPET_|$)'
+
+    # Extracting code snippets
+    snippets = re.findall(pattern, programs)
+
+    # Print each extracted snippet
+    # for i, snippet in enumerate(snippets, start=1):
+    #     print(f"Snippet {i}:\n{snippet}\n")
+
+    # resp = [choice.message.content.replace("execute_command(image)",
+    #                                                         "execute_command(image, my_fig, time_wait_between_lines, syntax)")
+    #         for choice in responses[0].choices]    
+    resp = [snippet.replace("execute_command(image)",
+                                "execute_command(image, my_fig, time_wait_between_lines, syntax)")
+            for snippet in snippets]   
     resp = [r.replace("```python", "").replace("```", "").strip() for r in resp]
 
     return resp, funcs

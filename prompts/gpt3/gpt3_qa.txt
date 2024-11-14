@@ -15,5 +15,5 @@ A: Barcelona, Spain
 Q: What devices can be controlled by a universal remote?
 A: tvs
 
-Q: {} Be very concise, no ranges, no doubt.
+Q: {} Be very concise, no ranges, no doubt. Answer in no more than a few words, preferably one, at most 2.
 A:

@@ -12,7 +12,7 @@ codex:
     top_p: 0.9                               # Top p for Codex
     best_of: 1                                      # Number of tries to choose from. Use when temperature > 0
     max_tokens: 1024                                 # Maximum number of tokens to generate for Codex
-    prompt: ./prompts/vpd.prompt                # Codex prompt file, which defines the API. (doesn't support video for now due to token limits)
+    prompt: ./prompts/vpd_5.prompt                # Codex prompt file, which defines the API. (doesn't support video for now due to token limits)
     model: gpt-4o                          # Codex model to use. [code-davinci-002, gpt-3.5-turbo, gpt-4]. See openai.Model.list() for available models
     num_outputs: 1
 
