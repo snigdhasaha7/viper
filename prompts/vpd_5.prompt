@@ -289,7 +289,8 @@ and for each subsequent program, make it different from the previous.
 
 Consider the following guidelines :
 − Use base Python (comparison, sorting ) for basic logical operations , left / right /up/down, math, etc .
-− Use the llm_query function to access external information and answer informational questions NOT concerning the image. − The program should print out the intermediate traces as it runs . So add print function in the program if needed.
+− Use the llm_query function to access external information and answer informational questions NOT concerning the image. 
+− The program should print out the intermediate traces as it runs . So add print function in the program if needed.
 
 For usual cases, follow the guidelines below:
 − For simple visual queries , directly call visual_question_answering to get the answer.
@@ -314,6 +315,7 @@ Some examples:
                 num_dogs_left += 1
         
         return formatting_answer(num_dogs_left)
+
 Generate your answers as follows. Do not provide any additional information besides the following format
 filled in with the generated code snippets:
 

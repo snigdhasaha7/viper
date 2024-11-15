@@ -1,0 +1,2502 @@
+[
+    {
+        "result": "['temperate']",
+        "answer": [
+            "desert",
+            "desert",
+            "desert",
+            "desert",
+            "desert",
+            "desert",
+            "dessert",
+            "dessert",
+            "dry",
+            "dry"
+        ],
+        "code": [
+            "def execute_command_5010235(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    ecosystem_name = image_patch.visual_question_answering(\"What is this?\")\n    climate_ecosystem = llm_query(f\"What would you call this type of climate or ecosystem: {ecosystem_name}?\", long_answer=False)\n    return formatting_answer(climate_ecosystem)"
+        ],
+        "id": 5010235,
+        "query": "What would you call this type of climate or ecosystem pictured here?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000501023.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['leaves']",
+        "answer": [
+            "leaf",
+            "leaf",
+            "leaf",
+            "leaf",
+            "leaf",
+            "leaf",
+            "wattle",
+            "wattle",
+            "plant leaf",
+            "plant leaf"
+        ],
+        "code": [
+            "def execute_command_1731425(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    animal_patch = image_patch.find(\"animal\")[0]\n    animal_name = animal_patch.visual_question_answering(\"What is this animal?\")\n    food_query = f\"What kind of food does {animal_name} eat?\"\n    food_answer = llm_query(food_query, long_answer=False)\n    return formatting_answer(food_answer)"
+        ],
+        "id": 1731425,
+        "query": "What kind of food does this animal eat?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000173142.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['napkin']",
+        "answer": [
+            "napkin",
+            "napkin",
+            "napkin",
+            "napkin",
+            "napkin",
+            "napkin",
+            "napkin",
+            "napkin",
+            "napkin",
+            "napkin"
+        ],
+        "code": [
+            "def execute_command_5192715(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    cloth_patch = image_patch.find(\"cloth\")[0]\n    return formatting_answer(cloth_patch.visual_question_answering(\"What small cloth is used to wipe the face or eating this meal?\"))"
+        ],
+        "id": 5192715,
+        "query": "What small cloth is used to wipe the face or eating this meal?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000519271.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['twister']",
+        "answer": [
+            "checker",
+            "checker",
+            "checker",
+            "checker",
+            "checker",
+            "checker",
+            "tetris",
+            "tetris",
+            "chess",
+            "chess"
+        ],
+        "code": [
+            "def execute_command_785545(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    pattern_name = image_patch.visual_question_answering(\"What is the pattern shown here?\")\n    game_name = llm_query(f\"What games make use of the {pattern_name} pattern?\", long_answer=False)\n    return formatting_answer(game_name)"
+        ],
+        "id": 785545,
+        "query": "What games makes use of the pattern shown here?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000078554.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['bread']",
+        "answer": [
+            "cake",
+            "cake",
+            "cake",
+            "cake",
+            "pizza",
+            "pizza",
+            "pizza",
+            "pizza",
+            "desert",
+            "desert"
+        ],
+        "code": [
+            "def execute_command_315965(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    food_items = image_patch.visual_question_answering(\"What are the food items in this photo called?\")\n    return formatting_answer(food_items)"
+        ],
+        "id": 315965,
+        "query": "What are the food items in this photo called?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000031596.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['gothic']",
+        "answer": [
+            "gothic",
+            "gothic",
+            "gothic",
+            "gothic",
+            "modern",
+            "modern",
+            "victorian",
+            "victorian",
+            "baroque",
+            "baroque"
+        ],
+        "code": [
+            "def execute_command_2587025(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    architecture_name = image_patch.visual_question_answering(\"What is the name of the building?\")\n    return formatting_answer(llm_query(f\"What style of architecture is {architecture_name}?\", long_answer=False))"
+        ],
+        "id": 2587025,
+        "query": "What style of architecture is pictured?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000258702.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['railroad']",
+        "answer": [
+            "railroad",
+            "railroad",
+            "railroad",
+            "railroad",
+            "railroad",
+            "railroad",
+            "subway track",
+            "subway track",
+            "train",
+            "train"
+        ],
+        "code": [
+            "def execute_command_112695(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    return formatting_answer(image_patch.visual_question_answering(\"What types of tracks are these in the photo?\"))"
+        ],
+        "id": 112695,
+        "query": "What types of tracks are these in the photo?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000011269.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['A driver must stop when they encounter the red sign.']",
+        "answer": [
+            "stop",
+            "stop",
+            "stop",
+            "stop",
+            "stop",
+            "stop",
+            "stop",
+            "stop",
+            "stop",
+            "stop"
+        ],
+        "code": [
+            "def execute_command_2624715(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    red_sign_patch = image_patch.find(\"red sign\")[0]\n    sign_text = red_sign_patch.visual_question_answering(\"What is written on the red sign?\")\n    \n    if \"stop\" in sign_text.lower():\n        return formatting_answer(\"A driver must stop when they encounter the red sign.\")\n    else:\n        return formatting_answer(llm_query(f\"What must a driver do when they encounter a {sign_text} sign?\", long_answer=False))"
+        ],
+        "id": 2624715,
+        "query": "What must a driver do when they encounter the red sign seen here?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000262471.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['catfish']",
+        "answer": [
+            "bass",
+            "bass",
+            "bass",
+            "bass",
+            "bass",
+            "bass",
+            "salmon",
+            "salmon",
+            "tuna",
+            "tuna"
+        ],
+        "code": [
+            "def execute_command_4284035(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    fish_name = image_patch.visual_question_answering(\"What kind of fish is this?\")\n    common_fish = llm_query(f\"What fish are most commonly caught in {fish_name}?\", long_answer=False)\n    return formatting_answer(common_fish)"
+        ],
+        "id": 4284035,
+        "query": "What fish are most commonly caught here?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000428403.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "[None]",
+        "answer": [
+            "tennis",
+            "tennis",
+            "tennis",
+            "tennis",
+            "tennis",
+            "tennis",
+            "raquetball",
+            "raquetball",
+            "tennis racketball",
+            "tennis racketball"
+        ],
+        "code": [
+            "def execute_command_4222125(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    items_patch = image_patch.find(\"item\")\n    \n    # Find the items that are below the pictures\n    items_below_pictures = []\n    for item_patch in items_patch:\n        item_with_surrounding = item_patch.expand_patch_with_surrounding()\n        if \"yes\" in item_with_surrounding.visual_question_answering(\"Is the item below the picture?\"):\n            print(f\"The item at {item_patch} is below the picture.\")\n            items_below_pictures.append(item_patch)\n    \n    # Get the name of the items below the pictures\n    items_names = []\n    for item_patch in items_below_pictures:\n        item_name = item_patch.visual_question_answering(\"What is this item?\")\n        items_names.append(item_name)\n    \n    # Query the LLM to find out what sport the items are used for\n    items_names_str = \", \".join(items_names)\n    sport_query = f\"What sport are the items {items_names_str} used for?\"\n    sport_answer = llm_query(sport_query, long_answer=False)\n    \n    return formatting_answer(sport_answer)"
+        ],
+        "id": 4222125,
+        "query": "What sport are the items below the pictures used for?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000422212.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['public transit']",
+        "answer": [
+            "travel",
+            "travel",
+            "commute",
+            "commute",
+            "commuter",
+            "commuter",
+            "public",
+            "public",
+            "passangers",
+            "passangers"
+        ],
+        "code": [
+            "def execute_command_653065(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    transportation_patch = image_patch.find(\"transportation\")[0]\n    transportation_type = transportation_patch.visual_question_answering(\"What is this type of transportation?\")\n    purpose = llm_query(f\"This type of transportation, {transportation_type}, is used primarily for what purpose?\", long_answer=False)\n    return formatting_answer(purpose)"
+        ],
+        "id": 653065,
+        "query": "This type of transportation is used primarily for what purpose?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000065306.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['Snapchat']",
+        "answer": [
+            "instagram",
+            "instagram",
+            "instagram",
+            "instagram",
+            "instagram",
+            "instagram",
+            "snapchat",
+            "snapchat",
+            "snapchat",
+            "snapchat"
+        ],
+        "code": [
+            "def execute_command_3119225(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    # This query does not require visual information from the image.\n    # It is a general knowledge question that can be answered using the llm_query function.\n    question = \"What social media app is famous for using facial filters?\"\n    answer = llm_query(question, long_answer=False)\n    return formatting_answer(answer)"
+        ],
+        "id": 3119225,
+        "query": "What social media app is famous for using facial filters?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000311922.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['cloth']",
+        "answer": [
+            "tablecloth",
+            "tablecloth",
+            "tablecloth",
+            "tablecloth",
+            "plastic",
+            "plastic",
+            "gravel",
+            "gravel",
+            "table cloth",
+            "table cloth"
+        ],
+        "code": [
+            "def execute_command_1061135(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    table_patch = image_patch.find(\"table\")[0]\n    table_with_surrounding = table_patch.expand_patch_with_surrounding()\n    covering_object = table_with_surrounding.visual_question_answering(\"What is covering the wooden table under the dishes?\")\n    return formatting_answer(covering_object)"
+        ],
+        "id": 1061135,
+        "query": "What is covering the wooden table under the dishes?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000106113.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['Equus quagga']",
+        "answer": [
+            "equus quagga",
+            "equus quagga",
+            "equus quagga",
+            "equus quagga",
+            "zebra maxima",
+            "zebra maxima",
+            "equus",
+            "equus",
+            "zebra",
+            "zebra"
+        ],
+        "code": [
+            "def execute_command_5690705(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    animal_name = image_patch.visual_question_answering(\"What is this animal?\")\n    scientific_name = llm_query(f\"What is the scientific name of {animal_name}?\", long_answer=False)\n    return formatting_answer(scientific_name)"
+        ],
+        "id": 5690705,
+        "query": "What is the scientific name of the animal seen here?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000569070.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['lab']",
+        "answer": [
+            "black lab",
+            "black lab",
+            "black lab",
+            "black lab",
+            "lab",
+            "lab",
+            "lab",
+            "lab",
+            "german shepard",
+            "german shepard"
+        ],
+        "code": [
+            "def execute_command_4410835(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    dog_patch = image_patch.find(\"dog\")[0]\n    return formatting_answer(dog_patch.visual_question_answering(\"What kind of dog is this?\"))"
+        ],
+        "id": 4410835,
+        "query": "What kind of dog is that?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000441083.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['checkerboard']",
+        "answer": [
+            "checkered",
+            "checkered",
+            "checkered",
+            "checkered",
+            "checkered",
+            "checkered",
+            "checkerboard",
+            "checkerboard",
+            "checkerboard",
+            "checkerboard"
+        ],
+        "code": [
+            "def execute_command_2915095(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    return formatting_answer(image_patch.visual_question_answering(\"What is the name of the floor pattern?\"))"
+        ],
+        "id": 2915095,
+        "query": "What is the name of the floor pattern?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000291509.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['table and chairs']",
+        "answer": [
+            "table and chair",
+            "table and chair",
+            "table and chair",
+            "table and chair",
+            "food",
+            "food",
+            "people",
+            "people",
+            "appliance",
+            "appliance"
+        ],
+        "code": [
+            "def execute_command_4414155(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    room_name = image_patch.visual_question_answering(\"What is this room?\")\n    objects_in_room = llm_query(f\"What objects are usually in a {room_name}?\", long_answer=False)\n    return formatting_answer(objects_in_room)"
+        ],
+        "id": 4414155,
+        "query": "What objects are usually in this room?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000441415.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['friend']",
+        "answer": [
+            "friend",
+            "friend",
+            "friend",
+            "friend",
+            "friend",
+            "friend",
+            "best friend",
+            "best friend",
+            "dog",
+            "dog"
+        ],
+        "code": [
+            "def execute_command_3610525(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    animal_patch = image_patch.find(\"animal\")[0]\n    animal_type = animal_patch.visual_question_answering(\"What is this animal?\")\n    answer = llm_query(f\"The {animal_type} in this image is said to be man's best what?\", long_answer=False)\n    return formatting_answer(answer)"
+        ],
+        "id": 3610525,
+        "query": "The animal in this image is said to be man's best what?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000361052.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['hummingbird']",
+        "answer": [
+            "finch",
+            "finch",
+            "finch",
+            "finch",
+            "robin",
+            "robin",
+            "goldfinch",
+            "goldfinch",
+            "canary",
+            "canary"
+        ],
+        "code": [
+            "def execute_command_1172375(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    bird_name = image_patch.visual_question_answering(\"What is this?\")\n    bird_family = llm_query(f\"To which bird family does {bird_name} belong?\", long_answer=False)\n    return formatting_answer(bird_family)"
+        ],
+        "id": 1172375,
+        "query": "Name the bird family to which it belongs to shown in this picture?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000117237.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['cheddar']",
+        "answer": [
+            "swiss",
+            "swiss",
+            "swiss",
+            "swiss",
+            "american",
+            "american",
+            "american",
+            "american",
+            "monterey jack",
+            "monterey jack"
+        ],
+        "code": [
+            "def execute_command_508295(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    cheese_patch = image_patch.find(\"cheese\")[0]\n    cheese_type = cheese_patch.visual_question_answering(\"What type of cheese is this?\")\n    return formatting_answer(cheese_type)"
+        ],
+        "id": 508295,
+        "query": "What type of cheese is on this sandwich?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000050829.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['1846']",
+        "answer": [
+            "1839",
+            "1839",
+            "1839",
+            "1839",
+            "1839",
+            "1839",
+            "1801",
+            "1801",
+            "1900",
+            "1900"
+        ],
+        "code": [
+            "def execute_command_4222405(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    sport_name = image_patch.visual_question_answering(\"What is this type of sport?\")\n    return formatting_answer(llm_query(f\"When was {sport_name} invented?\", long_answer=False))"
+        ],
+        "id": 4222405,
+        "query": "When was this type of sport invented?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000422240.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['black']",
+        "answer": [
+            "motorcycle",
+            "motorcycle",
+            "motorcycle",
+            "motorcycle",
+            "motorcycle",
+            "motorcycle",
+            "harley",
+            "harley",
+            "harley davidson",
+            "harley davidson"
+        ],
+        "code": [
+            "def execute_command_5250215(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    bike_patch = image_patch.find(\"bike\")[0]\n    bike_model = bike_patch.visual_question_answering(\"What is the model of the bike?\")\n    return formatting_answer(bike_model)"
+        ],
+        "id": 5250215,
+        "query": "Name the bike model shown in this picture?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000525021.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['seine']",
+        "answer": [
+            "canal",
+            "canal",
+            "canal",
+            "canal",
+            "canal",
+            "canal",
+            "venice",
+            "venice",
+            "river",
+            "river"
+        ],
+        "code": [
+            "def execute_command_357265(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    boat_patch = image_patch.find(\"boat\")[0]\n    waterway_name = boat_patch.visual_question_answering(\"What is the name of the waterway?\")\n    return formatting_answer(waterway_name)"
+        ],
+        "id": 357265,
+        "query": "What waterway is this boat on?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000035726.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['walking']",
+        "answer": [
+            "graze",
+            "graze",
+            "graze",
+            "graze",
+            "graze",
+            "graze",
+            "eat",
+            "eat",
+            "eat",
+            "eat"
+        ],
+        "code": [
+            "def execute_command_984165(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    sheep_patch = image_patch.find(\"sheep\")[0]\n    return formatting_answer(sheep_patch.visual_question_answering(\"What are the sheep doing?\"))"
+        ],
+        "id": 984165,
+        "query": "What are the sheep doing in the pasture?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000098416.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['roman']",
+        "answer": [
+            "roman",
+            "roman",
+            "roman",
+            "roman",
+            "roman",
+            "roman",
+            "roman",
+            "roman",
+            "roman numeral",
+            "roman numeral"
+        ],
+        "code": [
+            "def execute_command_1606615(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    clock_patch = image_patch.find(\"clock\")[0]\n    return formatting_answer(clock_patch.visual_question_answering(\"What type of numerals are on the clock?\"))"
+        ],
+        "id": 1606615,
+        "query": "What type of numerals are on the clock?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000160661.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['1980s']",
+        "answer": [
+            "1990",
+            "1990",
+            "1990",
+            "1990",
+            "1990",
+            "1990",
+            "2000s",
+            "2000s",
+            "2000's",
+            "2000's"
+        ],
+        "code": [
+            "def execute_command_3453565(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    photo_description = image_patch.visual_question_answering(\"What is this photo about?\")\n    decade = llm_query(f\"What decade is this photo likely taken based on the description: {photo_description}?\", long_answer=False)\n    return formatting_answer(decade)"
+        ],
+        "id": 3453565,
+        "query": "What decade is this photo likely taken?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000345356.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['dirt']",
+        "answer": [
+            "red soil",
+            "red soil",
+            "red soil",
+            "red soil",
+            "healthy",
+            "healthy",
+            "teracotta",
+            "teracotta",
+            "clay",
+            "clay"
+        ],
+        "code": [
+            "def execute_command_4499815(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    soil_type = image_patch.visual_question_answering(\"What kind of soil is this?\")\n    return formatting_answer(soil_type)"
+        ],
+        "id": 4499815,
+        "query": "What kind of soil is this?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000449981.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['lunch']",
+        "answer": [
+            "lunch",
+            "lunch",
+            "lunch",
+            "lunch",
+            "lunch",
+            "lunch",
+            "breakfast",
+            "breakfast",
+            "dinner",
+            "dinner"
+        ],
+        "code": [
+            "def execute_command_3770915(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    meal_name = image_patch.visual_question_answering(\"What is this meal?\")\n    return formatting_answer(llm_query(f\"When would {meal_name} be commonly eaten?\", long_answer=False))"
+        ],
+        "id": 3770915,
+        "query": "When would this meal be commonly eaten?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000377091.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['two']",
+        "answer": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "2",
+            "2"
+        ],
+        "code": [
+            "def execute_command_5241085(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    object_patch = image_patch.find(\"object\")[0]\n    object_name = object_patch.visual_question_answering(\"What is this object?\")\n    answer = llm_query(f\"How many people does {object_name} typically carry?\", long_answer=False)\n    return formatting_answer(answer)"
+        ],
+        "id": 5241085,
+        "query": "How many people does each of these typically carry?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000524108.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.5999999999999999
+        ]
+    },
+    {
+        "result": "['ollie']",
+        "answer": [
+            "turn",
+            "turn",
+            "grind",
+            "grind",
+            "grind",
+            "grind",
+            "half pipe",
+            "half pipe",
+            "rimjob",
+            "rimjob"
+        ],
+        "code": [
+            "def execute_command_1476535(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    return formatting_answer(image_patch.visual_question_answering(\"What is this trick called?\"))"
+        ],
+        "id": 1476535,
+        "query": "What is this trick called?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000147653.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['wine']",
+        "answer": [
+            "champagne",
+            "champagne",
+            "champagne",
+            "champagne",
+            "champagne",
+            "champagne",
+            "champagne",
+            "champagne",
+            "wine",
+            "wine"
+        ],
+        "code": [
+            "def execute_command_5615235(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    glass_patch = image_patch.find(\"glass\")[0]\n    drink_name = glass_patch.visual_question_answering(\"What drink is in the glass?\")\n    return formatting_answer(drink_name)"
+        ],
+        "id": 5615235,
+        "query": "What drink is in the glass?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000561523.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.5999999999999999
+        ]
+    },
+    {
+        "result": "['motorcycle']",
+        "answer": [
+            "motorbike",
+            "motorbike",
+            "motorbike",
+            "motorbike",
+            "motorcycle",
+            "motorcycle",
+            "race",
+            "race",
+            "dirt bike",
+            "dirt bike"
+        ],
+        "code": [
+            "def execute_command_4620265(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    bike_patch = image_patch.find(\"bike\")[0]\n    bike_type = bike_patch.visual_question_answering(\"What kind of bike is this?\")\n    return formatting_answer(bike_type)"
+        ],
+        "id": 4620265,
+        "query": "What kind of bike in this showroom?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000462026.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.6000000000000001
+        ]
+    },
+    {
+        "result": "['can']",
+        "answer": [
+            "bleach",
+            "bleach",
+            "bleach",
+            "bleach",
+            "comet",
+            "comet",
+            "comet",
+            "comet",
+            "toilet",
+            "toilet"
+        ],
+        "code": [
+            "def execute_command_2789665(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    cleaner_patch = image_patch.find(\"cleaner\")[0]\n    cleaner_type = cleaner_patch.visual_question_answering(\"What type of cleaner is this?\")\n    return formatting_answer(cleaner_type)"
+        ],
+        "id": 2789665,
+        "query": "What type of cleaner is being used?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000278966.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['park']",
+        "answer": [
+            "park",
+            "park",
+            "park",
+            "park",
+            "field",
+            "field",
+            "sideline",
+            "sideline",
+            "soccer field or park",
+            "soccer field or park"
+        ],
+        "code": [
+            "def execute_command_4069085(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    location_name = image_patch.visual_question_answering(\"What is the name of the location?\")\n    return formatting_answer(location_name)"
+        ],
+        "id": 4069085,
+        "query": "What is the name of the location being featured in this photo?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000406908.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['halters']",
+        "answer": [
+            "bridle",
+            "bridle",
+            "bridle",
+            "bridle",
+            "harness",
+            "harness",
+            "harness",
+            "harness",
+            "rein",
+            "rein"
+        ],
+        "code": [
+            "def execute_command_2725185(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    ropes_patch = image_patch.find(\"ropes\")[0]\n    return formatting_answer(ropes_patch.visual_question_answering(\"What are the ropes on their faces called?\"))"
+        ],
+        "id": 2725185,
+        "query": "What are the ropes on their faces called?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000272518.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['they fell']",
+        "answer": [
+            "fell",
+            "fell",
+            "fell",
+            "fell",
+            "fell",
+            "fell",
+            "crash",
+            "crash",
+            "crashed",
+            "crashed"
+        ],
+        "code": [
+            "def execute_command_2627035(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    person_patch = image_patch.find(\"person\")[0]\n    return formatting_answer(person_patch.visual_question_answering(\"What happened to this person?\"))"
+        ],
+        "id": 2627035,
+        "query": "What happened to this person?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000262703.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['1500 lbs']",
+        "answer": [
+            "800 lbs",
+            "800 lbs",
+            "800 lbs",
+            "800 lbs",
+            "500 pounds",
+            "500 pounds",
+            "1000",
+            "1000",
+            "1200 pounds",
+            "1200 pounds"
+        ],
+        "code": [
+            "def execute_command_4101145(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    species_name = image_patch.visual_question_answering(\"What is this?\")\n    average_weight = llm_query(f\"What is the average weight of an adult male {species_name}?\", long_answer=False)\n    return formatting_answer(average_weight)"
+        ],
+        "id": 4101145,
+        "query": "What is the average weight of an adult male of this species?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000410114.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['new year']",
+        "answer": [
+            "new year",
+            "new year",
+            "new year",
+            "new year",
+            "new year",
+            "new year",
+            "new year day",
+            "new year day",
+            "new year day",
+            "new year day"
+        ],
+        "code": [
+            "def execute_command_2860015(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    card_patch = image_patch.find(\"card\")[0]\n    holiday = card_patch.visual_question_answering(\"What holiday is this card being created for?\")\n    return formatting_answer(holiday)"
+        ],
+        "id": 2860015,
+        "query": "What holiday is this card being created for?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000286001.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['american airlines']",
+        "answer": [
+            "american",
+            "american",
+            "american",
+            "american",
+            "american",
+            "american",
+            "delta",
+            "delta",
+            "delta",
+            "delta"
+        ],
+        "code": [
+            "def execute_command_2675215(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    plane_patch = image_patch.find(\"plane\")[0]\n    return formatting_answer(plane_patch.visual_question_answering(\"What airline is sponsored on this plane?\"))"
+        ],
+        "id": 2675215,
+        "query": "What airline is sponsored on this plane?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000267521.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['gas']",
+        "answer": [
+            "gas",
+            "gas",
+            "gas",
+            "gas",
+            "gas",
+            "gas",
+            "gas",
+            "gas",
+            "electric",
+            "electric"
+        ],
+        "code": [
+            "def execute_command_1047905(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    return formatting_answer(image_patch.visual_question_answering(\"Is that an electric or gas stove?\"))"
+        ],
+        "id": 1047905,
+        "query": "Is that an electric or gas stove?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000104790.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['sweet']",
+        "answer": [
+            "good",
+            "good",
+            "good",
+            "good",
+            "like bread",
+            "like bread",
+            "sweet",
+            "sweet",
+            "delicious",
+            "delicious"
+        ],
+        "code": [
+            "def execute_command_1318415(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    bread_patch = image_patch.find(\"bread\")[0]\n    bread_type = bread_patch.visual_question_answering(\"What type of bread is this?\")\n    taste_description = llm_query(f\"How does {bread_type} taste?\", long_answer=False)\n    return formatting_answer(taste_description)"
+        ],
+        "id": 1318415,
+        "query": "How does the bread taste?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000131841.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.6
+        ]
+    },
+    {
+        "result": "['refrigerator']",
+        "answer": [
+            "refrigerator",
+            "refrigerator",
+            "refrigerator",
+            "refrigerator",
+            "refrigerator",
+            "refrigerator",
+            "refridgerator",
+            "refridgerator",
+            "fridge",
+            "fridge"
+        ],
+        "code": [
+            "def execute_command_3062125(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    silver_appliance_patch = image_patch.find(\"silver appliance\")[0]\n    return formatting_answer(silver_appliance_patch.visual_question_answering(\"What is this?\"))"
+        ],
+        "id": 3062125,
+        "query": "What is this silver appliance?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000306212.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['cat food']",
+        "answer": [
+            "meow mix",
+            "meow mix",
+            "meow mix",
+            "meow mix",
+            "wet",
+            "wet",
+            "siamese",
+            "siamese",
+            "purina cat chow",
+            "purina cat chow"
+        ],
+        "code": [
+            "def execute_command_3007325(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    cat_food_patch = image_patch.find(\"cat food\")[0]\n    food_type = cat_food_patch.visual_question_answering(\"What type of food is this?\")\n    return formatting_answer(food_type)"
+        ],
+        "id": 3007325,
+        "query": "What type of cat food could that be?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000300732.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['hip']",
+        "answer": [
+            "barn",
+            "barn",
+            "barn",
+            "barn",
+            "gabled",
+            "gabled",
+            "mansard",
+            "mansard",
+            "shingled",
+            "shingled"
+        ],
+        "code": [
+            "def execute_command_5172495(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    house_patch = image_patch.find(\"house\")[0]\n    roof_style = house_patch.visual_question_answering(\"What style of roof does this house have?\")\n    return formatting_answer(roof_style)"
+        ],
+        "id": 5172495,
+        "query": "What style of roof does that house have?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000517249.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['1983']",
+        "answer": [
+            "1968",
+            "1968",
+            "1968",
+            "1968",
+            "1 decade",
+            "1 decade",
+            "year",
+            "year",
+            "since 1968",
+            "since 1968"
+        ],
+        "code": [
+            "def execute_command_3859185(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    question = \"How long has ultimate frisbee been an official sport?\"\n    return formatting_answer(llm_query(question, long_answer=False))"
+        ],
+        "id": 3859185,
+        "query": "How long has ultimate frisbee been an official sport?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000385918.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['With four toothbrushes, you can do a variety of things beyond their intended use for dental hygiene. Here are some creative ideas:\\n\\n1. **Art Projects**: Use the toothbrushes to create unique textures in painting or other art projects. The bristles can be great for splattering paint or creating interesting patterns.\\n\\n2. **Cleaning Tools**: Assign each toothbrush to a different cleaning task. They can be used to clean small, hard-to-reach areas like grout lines, jewelry, or the crevices in kitchen appliances.\\n\\n3. **Gardening**: Use the toothbrushes to gently clean dirt off delicate plant roots or to help with planting seeds by making small holes in the soil.\\n\\n4. **Pet Care**: Use a toothbrush to groom pets, especially for brushing their fur or cleaning their paws.\\n\\n5. **Crafts**: Incorporate the toothbrushes into craft projects. They can be used as handles for homemade stamps or as part of a sculpture.\\n\\n6. **Science Experiments**: Use the toothbrushes in educational science experiments, such as demonstrating how bristles can mimic the action of a filter or how different textures affect friction.\\n\\n7. **Upcycling**: Get creative and upcycle the toothbrushes into something new, like a bracelet holder']",
+        "answer": [
+            "brush teeth",
+            "brush teeth",
+            "brush teeth",
+            "brush teeth",
+            "brush teeth",
+            "brush teeth",
+            "brush teeth",
+            "brush teeth",
+            "brush teeth",
+            "brush teeth"
+        ],
+        "code": [
+            "def execute_command_2285515(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    items_patch = image_patch.find(\"item\")\n    \n    # Get the names of the items in the image\n    item_names = [item_patch.visual_question_answering(\"What is this?\") for item_patch in items_patch]\n    \n    # Formulate the question for the LLM\n    items_list = \", \".join(item_names)\n    question = f\"What can you do with the items: {items_list}?\"\n    \n    # Get the answer from the LLM\n    answer = llm_query(question, long_answer=True)\n    \n    return formatting_answer(answer)"
+        ],
+        "id": 2285515,
+        "query": "What can you do with the items pictured?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000228551.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['300']",
+        "answer": [
+            "1500",
+            "1500",
+            "1500",
+            "1500",
+            "800",
+            "800",
+            "200",
+            "200",
+            "1250",
+            "1250"
+        ],
+        "code": [
+            "def execute_command_435815(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    dish_name = image_patch.visual_question_answering(\"What is this dish?\")\n    calories = llm_query(f\"How many calories are in {dish_name}?\", long_answer=False)\n    return formatting_answer(calories)"
+        ],
+        "id": 435815,
+        "query": "How many calories are in this dish?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000043581.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['flour']",
+        "answer": [
+            "dough",
+            "dough",
+            "dough",
+            "dough",
+            "dough",
+            "dough",
+            "yeast",
+            "yeast",
+            "flour",
+            "flour"
+        ],
+        "code": [
+            "def execute_command_2407315(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    breading_type = image_patch.visual_question_answering(\"What kind of breading was used?\")\n    return formatting_answer(breading_type)"
+        ],
+        "id": 2407315,
+        "query": "What kind of breading was used?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000240731.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.5999999999999999
+        ]
+    },
+    {
+        "result": "['golden retriever']",
+        "answer": [
+            "golden retriever",
+            "golden retriever",
+            "golden retriever",
+            "golden retriever",
+            "labrador",
+            "labrador",
+            "golden retreiver",
+            "golden retreiver",
+            "labadore",
+            "labadore"
+        ],
+        "code": [
+            "def execute_command_3859125(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    dog_patch = image_patch.find(\"dog\")[0]\n    dog_breed = dog_patch.visual_question_answering(\"What breed of dog is this?\")\n    return formatting_answer(dog_breed)"
+        ],
+        "id": 3859125,
+        "query": "What breed of dog is the dog in this photo?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000385912.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['bread']",
+        "answer": [
+            "wheat",
+            "wheat",
+            "wheat",
+            "wheat",
+            "wheat",
+            "wheat",
+            "rye",
+            "rye",
+            "toast",
+            "toast"
+        ],
+        "code": [
+            "def execute_command_1964625(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    bread_patch = image_patch.find(\"bread\")[0]\n    bread_type = bread_patch.visual_question_answering(\"What type of bread is this?\")\n    return formatting_answer(bread_type)"
+        ],
+        "id": 1964625,
+        "query": "What type of bread is pictured in this dish?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000196462.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['gifts']",
+        "answer": [
+            "stuffed",
+            "stuffed",
+            "stuffed",
+            "stuffed",
+            "animal",
+            "animal",
+            "animal",
+            "animal",
+            "they're stuffed",
+            "they're stuffed"
+        ],
+        "code": [
+            "def execute_command_3902015(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    object_patches = image_patch.find(\"object\")\n    \n    # Get the names of the objects in the image\n    object_names = [patch.visual_question_answering(\"What is this?\") for patch in object_patches]\n    \n    # Use llm_query to find out what these objects have in common\n    commonality = llm_query(f\"What do these things have in common: {', '.join(object_names)}?\", long_answer=False)\n    \n    return formatting_answer(commonality)"
+        ],
+        "id": 3902015,
+        "query": "What do these things have in common?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000390201.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['summer']",
+        "answer": [
+            "spring",
+            "spring",
+            "spring",
+            "spring",
+            "fall",
+            "fall",
+            "fall",
+            "fall",
+            "summer",
+            "summer"
+        ],
+        "code": [
+            "def execute_command_4009075(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    season = image_patch.visual_question_answering(\"What time of year is it?\")\n    return formatting_answer(season)"
+        ],
+        "id": 4009075,
+        "query": "What time of year is it?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000400907.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.5999999999999999
+        ]
+    },
+    {
+        "result": "['merlot']",
+        "answer": [
+            "becker vineyard",
+            "becker vineyard",
+            "becker vineyard",
+            "becker vineyard",
+            "becker vineyard",
+            "becker vineyard",
+            "becker vineyard",
+            "becker vineyard",
+            "becker",
+            "becker"
+        ],
+        "code": [
+            "def execute_command_1110325(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    wine_patch = image_patch.find(\"wine\")[0]\n    wine_brand = wine_patch.visual_question_answering(\"What brand is this wine?\")\n    return formatting_answer(wine_brand)"
+        ],
+        "id": 1110325,
+        "query": "What brand is this wine?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000111032.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['snowing']",
+        "answer": [
+            "snow",
+            "snow",
+            "snow",
+            "snow",
+            "snow",
+            "snow",
+            "snow",
+            "snow",
+            "snow",
+            "snow"
+        ],
+        "code": [
+            "def execute_command_4469835(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    weather_condition = image_patch.visual_question_answering(\"Is it snowing or raining?\")\n    return formatting_answer(weather_condition)"
+        ],
+        "id": 4469835,
+        "query": "Is it snowing or raing?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000446983.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['keeping food cold']",
+        "answer": [
+            "keep food cold",
+            "keep food cold",
+            "keep food cold",
+            "keep food cold",
+            "refrigeration",
+            "refrigeration",
+            "refrigeration",
+            "refrigeration",
+            "food fresh",
+            "food fresh"
+        ],
+        "code": [
+            "def execute_command_5715855(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    machine_patch = image_patch.find(\"machine\")[0]\n    machine_name = machine_patch.visual_question_answering(\"What is this machine?\")\n    usage = llm_query(f\"What is {machine_name} used for?\", long_answer=False)\n    return formatting_answer(usage)"
+        ],
+        "id": 5715855,
+        "query": "What is this machine used for?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000571585.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['russian']",
+        "answer": [
+            "russian",
+            "russian",
+            "russian",
+            "russian",
+            "russia",
+            "russia",
+            "iraqi",
+            "iraqi",
+            "thai",
+            "thai"
+        ],
+        "code": [
+            "def execute_command_5525075(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    sign_patch = image_patch.find(\"sign\")[0]\n    language = sign_patch.visual_question_answering(\"What language is on the sign?\")\n    return formatting_answer(language)"
+        ],
+        "id": 5525075,
+        "query": "What language is on the sign?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000552507.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['rubber']",
+        "answer": [
+            "neoprene",
+            "neoprene",
+            "neoprene",
+            "neoprene",
+            "wet suit",
+            "wet suit",
+            "rubber",
+            "rubber",
+            "wetsuit",
+            "wetsuit"
+        ],
+        "code": [
+            "def execute_command_429445(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    woman_patch = image_patch.find(\"woman\")[0]\n    suit_material = woman_patch.visual_question_answering(\"What is the suit made of?\")\n    return formatting_answer(suit_material)"
+        ],
+        "id": 429445,
+        "query": "What is the suit the woman was wearing made of?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000042944.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.6
+        ]
+    },
+    {
+        "result": "['trunks']",
+        "answer": [
+            "ivory",
+            "ivory",
+            "ivory",
+            "ivory",
+            "circus",
+            "circus",
+            "their memory",
+            "their memory",
+            "size",
+            "size"
+        ],
+        "code": [
+            "def execute_command_4541955(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    animal_patches = image_patch.find(\"animal\")\n    \n    if not animal_patches:\n        return formatting_answer(\"No animals found in the image.\")\n    \n    # Assuming the first animal patch is representative of the animals in the image\n    animal_patch = animal_patches[0]\n    animal_name = animal_patch.visual_question_answering(\"What is this animal?\")\n    \n    # Use llm_query to get information about what the animal is best known for\n    best_known_for = llm_query(f\"What are {animal_name}s best known for?\", long_answer=False)\n    \n    return formatting_answer(best_known_for)"
+        ],
+        "id": 4541955,
+        "query": "What are the animals featured here best known for?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000454195.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['yacht']",
+        "answer": [
+            "canoe",
+            "canoe",
+            "canoe",
+            "canoe",
+            "canoe",
+            "canoe",
+            "canoe",
+            "canoe",
+            "fish",
+            "fish"
+        ],
+        "code": [
+            "def execute_command_2954125(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    man_patch = image_patch.find(\"man\")[0]\n    boat_patch = man_patch.expand_patch_with_surrounding()\n    boat_type = boat_patch.visual_question_answering(\"What kind of boat is this?\")\n    return formatting_answer(boat_type)"
+        ],
+        "id": 2954125,
+        "query": "What kind of boat is this man making?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000295412.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['florida california']",
+        "answer": [
+            "florida",
+            "florida",
+            "florida",
+            "florida",
+            "florida",
+            "florida",
+            "florida",
+            "florida",
+            "florida and california",
+            "florida and california"
+        ],
+        "code": [
+            "def execute_command_4104935(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    fruit_patches = image_patch.find(\"fruit\")\n    \n    # Get the type of fruit from the first fruit patch\n    fruit_type = fruit_patches[0].visual_question_answering(\"What is this fruit?\")\n    \n    # Query the LLM to find out in which US states the fruit is commonly grown\n    states = llm_query(f\"In which US states are {fruit_type} commonly grown?\", long_answer=False)\n    \n    return formatting_answer(states)"
+        ],
+        "id": 4104935,
+        "query": "In which us states are these fruits commonly grown?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000410493.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['samsung']",
+        "answer": [
+            "samsung",
+            "samsung",
+            "samsung",
+            "samsung",
+            "samsung",
+            "samsung",
+            "samsung",
+            "samsung",
+            "sasung",
+            "sasung"
+        ],
+        "code": [
+            "def execute_command_3658865(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    phone_patch = image_patch.find(\"phone\")[0]\n    phone_brand = phone_patch.visual_question_answering(\"What brand of phone is this?\")\n    return formatting_answer(phone_brand)"
+        ],
+        "id": 3658865,
+        "query": "What brand of phone is this?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000365886.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['Making onion rings is a relatively simple process that involves coating slices of onion in a batter or breading and then frying them until they are crispy and golden brown. Here is a basic recipe for making onion rings:\\n\\n### Ingredients:\\n- 2 large onions\\n- 1 cup all-purpose flour\\n- 1 teaspoon baking powder\\n- 1 teaspoon salt\\n- 1 cup milk (or buttermilk for extra flavor)\\n- 1 egg\\n- 1 cup breadcrumbs (optional, for extra crunch)\\n- Oil for frying (vegetable, canola, or peanut oil work well)\\n\\n### Instructions:\\n\\n1. **Prepare the Onions:**\\n   - Peel the onions and slice them into rings about 1/4 to 1/2 inch thick. Separate the rings and set them aside.\\n\\n2. **Make the Batter:**\\n   - In a medium bowl, combine the flour, baking powder, and salt.\\n   - In another bowl, whisk together the milk and egg.\\n   - Gradually add the wet ingredients to the dry ingredients, stirring until the batter is smooth. If you prefer a thicker batter, you can add a bit more flour.\\n\\n3. **Optional Breading:**\\n   - If you want extra crunchy onion rings, you can']",
+        "answer": [
+            "fried",
+            "fried",
+            "fried",
+            "fried",
+            "fried",
+            "fried",
+            "fried",
+            "fried",
+            "oven",
+            "oven"
+        ],
+        "code": [
+            "def execute_command_5427775(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    side_dish_name = image_patch.visual_question_answering(\"What is this side dish?\")\n    return formatting_answer(llm_query(f\"How is {side_dish_name} made?\", long_answer=True))"
+        ],
+        "id": 5427775,
+        "query": "How is this side dish made?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000542777.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['fishing boat']",
+        "answer": [
+            "fish",
+            "fish",
+            "fish",
+            "fish",
+            "yacht",
+            "yacht",
+            "pontoon",
+            "pontoon",
+            "fish boat",
+            "fish boat"
+        ],
+        "code": [
+            "def execute_command_2270735(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    boat_patches = image_patch.find(\"boat\")\n    \n    # Find the boat that is furthest away (in the background)\n    boat_patches.sort(key=lambda boat: boat.compute_depth())\n    background_boat_patch = boat_patches[-1]\n    \n    # Ask what kind of boat it is\n    boat_type = background_boat_patch.visual_question_answering(\"What kind of boat is this?\")\n    \n    return formatting_answer(boat_type)"
+        ],
+        "id": 2270735,
+        "query": "What kind of boat is in the background?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000227073.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['flowers']",
+        "answer": [
+            "flower",
+            "flower",
+            "flower",
+            "flower",
+            "flower",
+            "flower",
+            "flower",
+            "flower",
+            "textile",
+            "textile"
+        ],
+        "code": [
+            "def execute_command_1045725(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    return formatting_answer(image_patch.visual_question_answering(\"What is the wallpaper in this picture showing?\"))"
+        ],
+        "id": 1045725,
+        "query": "What is the wallpaper in this picture showing?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000104572.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['worship']",
+        "answer": [
+            "worship",
+            "worship",
+            "worship",
+            "worship",
+            "church",
+            "church",
+            "horse stall",
+            "horse stall",
+            "meet",
+            "meet"
+        ],
+        "code": [
+            "def execute_command_5742275(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    building_name = image_patch.visual_question_answering(\"What is the name of the building?\")\n    building_use = llm_query(f\"What is {building_name} used for?\", long_answer=False)\n    return formatting_answer(building_use)"
+        ],
+        "id": 5742275,
+        "query": "What is this building use for?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000574227.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['numbers']",
+        "answer": [
+            "time",
+            "time",
+            "time",
+            "time",
+            "clock",
+            "clock",
+            "clock",
+            "clock",
+            "england",
+            "england"
+        ],
+        "code": [
+            "def execute_command_5448835(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    round_disk_patch = image_patch.find(\"round disk\")[0]\n    return formatting_answer(round_disk_patch.visual_question_answering(\"What can we find on this round disk?\"))"
+        ],
+        "id": 5448835,
+        "query": "What can we find on this round disk?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000544883.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['42,000 pounds']",
+        "answer": [
+            "lot",
+            "lot",
+            "lot",
+            "lot",
+            "lot",
+            "lot",
+            "1000 btu",
+            "1000 btu",
+            "350lbs",
+            "350lbs"
+        ],
+        "code": [
+            "def execute_command_5471365(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    engine_patch = image_patch.find(\"engine\")[0]\n    engine_name = engine_patch.visual_question_answering(\"What is the name of the engine?\")\n    thrust_info = llm_query(f\"How much thrust can {engine_name} produce?\", long_answer=False)\n    return formatting_answer(thrust_info)"
+        ],
+        "id": 5471365,
+        "query": "How much thrust can that engine produce?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000547136.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['prison']",
+        "answer": [
+            "jail",
+            "jail",
+            "jail",
+            "jail",
+            "jail",
+            "jail",
+            "beach house",
+            "beach house",
+            "old",
+            "old"
+        ],
+        "code": [
+            "def execute_command_3983625(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    window_patch = image_patch.find(\"window\")[0]\n    window_type = window_patch.visual_question_answering(\"What type of house is this window seen in?\")\n    return formatting_answer(window_type)"
+        ],
+        "id": 3983625,
+        "query": "Name the type of house where these windows are seen?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000398362.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['television']",
+        "answer": [
+            "space",
+            "space",
+            "space",
+            "space",
+            "space",
+            "space",
+            "planet",
+            "planet",
+            "mice",
+            "mice"
+        ],
+        "code": [
+            "def execute_command_781075(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    cat_patch = image_patch.find(\"cat\")[0]\n    \n    # Ask the visual question about what the cat is watching\n    tv_program_description = cat_patch.visual_question_answering(\"What is the cat watching?\")\n    \n    # Use llm_query to get an idea of what the TV program might be about\n    tv_program_about = llm_query(f\"What do you think the TV program about {tv_program_description} is about?\", long_answer=False)\n    \n    return formatting_answer(tv_program_about)"
+        ],
+        "id": 781075,
+        "query": "What do you think the tv program the cat is watching is about?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000078107.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['electricity']",
+        "answer": [
+            "electricity",
+            "electricity",
+            "electricity",
+            "electricity",
+            "diesel",
+            "diesel",
+            "fuel",
+            "fuel",
+            "coal",
+            "coal"
+        ],
+        "code": [
+            "def execute_command_4119585(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    vehicle_patch = image_patch.find(\"vehicle\")[0]\n    vehicle_type = vehicle_patch.visual_question_answering(\"What type of vehicle is this?\")\n    power_source = llm_query(f\"How is a {vehicle_type} powered?\", long_answer=False)\n    return formatting_answer(power_source)"
+        ],
+        "id": 4119585,
+        "query": "How is the vehicle in the picture powered?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000411958.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['leonardo da vinci']",
+        "answer": [
+            "monet",
+            "monet",
+            "monet",
+            "monet",
+            "de zurbaran",
+            "de zurbaran",
+            "zubaran",
+            "zubaran",
+            "rembrandt",
+            "rembrandt"
+        ],
+        "code": [
+            "def execute_command_3186185(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    painting_patch = image_patch.find(\"painting\")[0]\n    painting_name = painting_patch.visual_question_answering(\"What is the name of this painting?\")\n    painter = llm_query(f\"Who is the famous painter that created {painting_name}?\", long_answer=False)\n    return formatting_answer(painter)"
+        ],
+        "id": 3186185,
+        "query": "What famous painter created this masterpiece?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000318618.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['orange']",
+        "answer": [
+            "cheesecake",
+            "cheesecake",
+            "cheesecake",
+            "cheesecake",
+            "flan",
+            "flan",
+            "sponge",
+            "sponge",
+            "cheese cake",
+            "cheese cake"
+        ],
+        "code": [
+            "def execute_command_4602665(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    cake_patch = image_patch.find(\"cake\")[0]\n    cake_type = cake_patch.visual_question_answering(\"What kind of cake is this?\")\n    return formatting_answer(cake_type)"
+        ],
+        "id": 4602665,
+        "query": "What kind of cake is on the plate?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000460266.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['parking lot']",
+        "answer": [
+            "park lot",
+            "park lot",
+            "park lot",
+            "park lot",
+            "park lot",
+            "park lot",
+            "park lot",
+            "park lot",
+            "park llot",
+            "park llot"
+        ],
+        "code": [
+            "def execute_command_713845(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    car_patches = image_patch.find(\"car\")\n    \n    # Check if there are many cars in the image\n    if len(car_patches) > 5:\n        place_name = llm_query(\"What do we call a place with many cars?\", long_answer=False)\n        return formatting_answer(place_name)\n    else:\n        return formatting_answer(\"Not enough cars to determine the place.\")"
+        ],
+        "id": 713845,
+        "query": "What do we call a place like this with many cars?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000071384.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['third base']",
+        "answer": [
+            "home",
+            "home",
+            "home",
+            "home",
+            "home",
+            "home",
+            "home plate",
+            "home plate",
+            "home plate",
+            "home plate"
+        ],
+        "code": [
+            "def execute_command_1430985(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    player_patch = image_patch.find(\"player\")[0]\n    base_patch = player_patch.expand_patch_with_surrounding()\n    base_name = base_patch.visual_question_answering(\"What base is this player standing on?\")\n    return formatting_answer(base_name)"
+        ],
+        "id": 1430985,
+        "query": "What base is this player standing on?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000143098.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['conflict']",
+        "answer": [
+            "world war 2",
+            "world war 2",
+            "world war 2",
+            "world war 2",
+            "world war 2",
+            "world war 2",
+            "wwi",
+            "wwi",
+            "second world war",
+            "second world war"
+        ],
+        "code": [
+            "def execute_command_365285(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    airplane_patch = image_patch.find(\"airplane\")[0]\n    airplane_name = airplane_patch.visual_question_answering(\"What is the name of the airplane?\")\n    war_association = llm_query(f\"What war is {airplane_name} associated with?\", long_answer=False)\n    return formatting_answer(war_association)"
+        ],
+        "id": 365285,
+        "query": "What war is this airplane associated with?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000036528.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['volleyball']",
+        "answer": [
+            "volleyball",
+            "volleyball",
+            "volleyball",
+            "volleyball",
+            "volleyball",
+            "volleyball",
+            "volleyball",
+            "volleyball",
+            "soccer",
+            "soccer"
+        ],
+        "code": [
+            "def execute_command_4348735(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    return formatting_answer(image_patch.visual_question_answering(\"What game is being played?\"))"
+        ],
+        "id": 4348735,
+        "query": "What game is being played?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000434873.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['no']",
+        "answer": [
+            "big ben",
+            "big ben",
+            "big ben",
+            "big ben",
+            "1 it is",
+            "1 it is",
+            "capri",
+            "capri",
+            "italy",
+            "italy"
+        ],
+        "code": [
+            "def execute_command_1204735(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    clock_tower_patch = image_patch.find(\"clock tower\")[0]\n    clock_tower_name = clock_tower_patch.visual_question_answering(\"What is the name of the clock tower?\")\n    return formatting_answer(clock_tower_name)"
+        ],
+        "id": 1204735,
+        "query": "Which clock tower is this?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000120473.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "[None]",
+        "answer": [
+            "new york",
+            "new york",
+            "new york",
+            "new york",
+            "sacramento",
+            "sacramento",
+            "queen",
+            "queen",
+            "philadelphia",
+            "philadelphia"
+        ],
+        "code": [
+            "def execute_command_4495465(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    intersection_patch = image_patch.find(\"intersection\")[0]\n    intersection_name = intersection_patch.visual_question_answering(\"What is the name of this intersection?\")\n    city_name = llm_query(f\"What city does {intersection_name} belong in?\", long_answer=False)\n    return formatting_answer(city_name)"
+        ],
+        "id": 4495465,
+        "query": "What city does this intersection belong in?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000449546.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['soccer']",
+        "answer": [
+            "soccer",
+            "soccer",
+            "soccer",
+            "soccer",
+            "soccer",
+            "soccer",
+            "soccer",
+            "soccer",
+            "soccer",
+            "soccer"
+        ],
+        "code": [
+            "def execute_command_575975(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    return formatting_answer(image_patch.visual_question_answering(\"What sport is being played?\"))"
+        ],
+        "id": 575975,
+        "query": "What sport is being played?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000057597.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['red']",
+        "answer": [
+            "red",
+            "red",
+            "red",
+            "red",
+            "red",
+            "red",
+            "merlot",
+            "merlot",
+            "cabernet",
+            "cabernet"
+        ],
+        "code": [
+            "def execute_command_3986045(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    wine_patch = image_patch.find(\"wine\")[0]\n    wine_type = wine_patch.visual_question_answering(\"What type of wine is this?\")\n    return formatting_answer(wine_type)"
+        ],
+        "id": 3986045,
+        "query": "What type of wine could that be?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000398604.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['no']",
+        "answer": [
+            "healthy",
+            "healthy",
+            "healthy",
+            "healthy",
+            "healthy",
+            "healthy",
+            "healthy",
+            "healthy",
+            "healthy",
+            "healthy"
+        ],
+        "code": [
+            "def execute_command_4616345(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    meal_patch = image_patch.find(\"meal\")[0]\n    \n    # Ask the visual question answering system about the healthiness of the meal\n    healthiness_answer = meal_patch.visual_question_answering(\"Is this a healthy meal?\")\n    \n    # If the visual question answering system cannot determine, use llm_query for additional context\n    if \"I don't know\" in healthiness_answer or \"not sure\" in healthiness_answer:\n        meal_description = meal_patch.visual_question_answering(\"What kind of meal is this?\")\n        healthiness_answer = llm_query(f\"Is {meal_description} a healthy meal?\", long_answer=False)\n    \n    return formatting_answer(healthiness_answer)"
+        ],
+        "id": 4616345,
+        "query": "Is this a healthy or unhealthy meal?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000461634.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['light']",
+        "answer": [
+            "light up",
+            "light up",
+            "light",
+            "light",
+            "power",
+            "power",
+            "light",
+            "light",
+            "radio",
+            "radio"
+        ],
+        "code": [
+            "def execute_command_3316465(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    equipment_patches = image_patch.find(\"equipment\")\n    \n    # Find the biggest equipment patch based on area (width * height)\n    biggest_equipment_patch = max(equipment_patches, key=lambda patch: patch.width * patch.height)\n    \n    # Get the name of the biggest equipment\n    equipment_name = biggest_equipment_patch.visual_question_answering(\"What is this equipment?\")\n    \n    # Query the use of the equipment using llm_query\n    equipment_use = llm_query(f\"What was the use of {equipment_name}?\", long_answer=False)\n    \n    return formatting_answer(equipment_use)"
+        ],
+        "id": 3316465,
+        "query": "What was the use of the biggest equipment on the board?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000331646.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['no']",
+        "answer": [
+            "roger federer",
+            "roger federer",
+            "roger federer",
+            "roger federer",
+            "john macanrow",
+            "john macanrow",
+            "tennis",
+            "tennis",
+            "kyrgios",
+            "kyrgios"
+        ],
+        "code": [
+            "def execute_command_1262295(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    return formatting_answer(image_patch.visual_question_answering(\"What is the name of the player?\"))"
+        ],
+        "id": 1262295,
+        "query": "What is the name of the player in this picture?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000126229.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['neutral density']",
+        "answer": [
+            "sepia",
+            "sepia",
+            "sepia",
+            "sepia",
+            "light",
+            "light",
+            "instagram",
+            "instagram",
+            "sephia",
+            "sephia"
+        ],
+        "code": [
+            "def execute_command_3127465(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    return formatting_answer(image_patch.visual_question_answering(\"What type of camera filter is this called?\"))"
+        ],
+        "id": 3127465,
+        "query": "What type of camera filter is this called?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000312746.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['storage']",
+        "answer": [
+            "ship",
+            "ship",
+            "ship",
+            "ship",
+            "ship",
+            "ship",
+            "mail",
+            "mail",
+            "delivery",
+            "delivery"
+        ],
+        "code": [
+            "def execute_command_2815825(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    boxes_patch = image_patch.find(\"box\")\n    \n    if not boxes_patch:\n        return formatting_answer(\"No boxes found in the image.\")\n    \n    # Assuming we need to ask the LLM about the usage of boxes\n    box_usage = llm_query(\"What are boxes used for?\", long_answer=False)\n    \n    return formatting_answer(box_usage)"
+        ],
+        "id": 2815825,
+        "query": "What are the boxes used for?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000281582.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['Throwing a frisbee can be done in several different ways, each with its own technique and purpose. Here are some of the most common methods:\\n\\n1. **Backhand Throw**:\\n   - This is the most common and basic throw.\\n   - Grip the frisbee with your thumb on top and fingers underneath.\\n   - Stand sideways to your target, with your throwing arm away from the target.\\n   - Bring the frisbee across your body and then flick your wrist as you release it.\\n\\n2. **Forehand Throw (or Flick)**:\\n   - This is another popular throw, especially in Ultimate Frisbee.\\n   - Grip the frisbee with your thumb on top and two fingers underneath, with your index and middle fingers against the rim.\\n   - Stand sideways to your target, with your throwing arm closer to the target.\\n   - Snap your wrist forward while keeping your arm relatively still to release the frisbee.\\n\\n3. **Hammer Throw**:\\n   - This is an overhead throw that causes the frisbee to fly upside down.\\n   - Grip the frisbee like a forehand throw.\\n   - Stand facing your target.\\n   - Bring the frisbee over your head and release it at an angle, flicking your wrist to give it spin.\\n\\n4.']",
+        "answer": [
+            "many",
+            "many",
+            "many",
+            "many",
+            "flip or fling",
+            "flip or fling",
+            "flip on side",
+            "flip on side",
+            "overhand underhand sideways",
+            "overhand underhand sideways"
+        ],
+        "code": [
+            "def execute_command_4363235(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    object_name = image_patch.visual_question_answering(\"What is this object?\")\n    return formatting_answer(llm_query(f\"What are different ways to throw {object_name}?\", long_answer=True))"
+        ],
+        "id": 4363235,
+        "query": "How are different ways to throw this object?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000436323.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['1940s']",
+        "answer": [
+            "1940's",
+            "1940's",
+            "1920s",
+            "1920s",
+            "1920's",
+            "1920's",
+            "1940s",
+            "1940s",
+            "depression",
+            "depression"
+        ],
+        "code": [
+            "def execute_command_4499905(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    time_period = image_patch.visual_question_answering(\"What time period might this be from?\")\n    return formatting_answer(time_period)"
+        ],
+        "id": 4499905,
+        "query": "What time period might this be from?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000449990.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.6
+        ]
+    },
+    {
+        "result": "['brown bear']",
+        "answer": [
+            "grizzly",
+            "grizzly",
+            "grizzly",
+            "grizzly",
+            "brown",
+            "brown",
+            "brown",
+            "brown",
+            "grizzly bear",
+            "grizzly bear"
+        ],
+        "code": [
+            "def execute_command_3076585(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    bear_patch = image_patch.find(\"bear\")[0]\n    bear_type = bear_patch.visual_question_answering(\"What type of bear is this?\")\n    return formatting_answer(bear_type)"
+        ],
+        "id": 3076585,
+        "query": "What type of bear is this?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000307658.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['black and white']",
+        "answer": [
+            "finch",
+            "finch",
+            "finch",
+            "finch",
+            "hum",
+            "hum",
+            "robin",
+            "robin",
+            "jay",
+            "jay"
+        ],
+        "code": [
+            "def execute_command_3300185(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    bird_patch = image_patch.find(\"bird\")[0]\n    bird_name = bird_patch.visual_question_answering(\"What breed of bird is this?\")\n    return formatting_answer(bird_name)"
+        ],
+        "id": 3300185,
+        "query": "What breed of bird is this?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000330018.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['transportation']",
+        "answer": [
+            "construction",
+            "construction",
+            "construction",
+            "construction",
+            "construction",
+            "construction",
+            "construction",
+            "construction",
+            "truck",
+            "truck"
+        ],
+        "code": [
+            "def execute_command_1118015(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    vehicle_patch = image_patch.find(\"vehicle\")[0]\n    vehicle_type = vehicle_patch.visual_question_answering(\"What type of vehicle is this?\")\n    industry = llm_query(f\"What kind of industry would the driver of a {vehicle_type} be in?\", long_answer=False)\n    return formatting_answer(industry)"
+        ],
+        "id": 1118015,
+        "query": "What kind of industry would the driver of this vehicle be in?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000111801.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['dinner']",
+        "answer": [
+            "even",
+            "even",
+            "even",
+            "even",
+            "noon",
+            "noon",
+            "night",
+            "night",
+            "dinner",
+            "dinner"
+        ],
+        "code": [
+            "def execute_command_5087485(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    food_name = image_patch.visual_question_answering(\"What kind of food is served?\")\n    time_of_day = llm_query(f\"At what time of day might you eat {food_name}?\", long_answer=False)\n    return formatting_answer(time_of_day)"
+        ],
+        "id": 5087485,
+        "query": "At what time of day might you eat this kind of food?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000508748.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.5999999999999999
+        ]
+    },
+    {
+        "result": "['very heavy']",
+        "answer": [
+            "10 tons",
+            "10 tons",
+            "10 tons",
+            "10 tons",
+            "100 tons",
+            "100 tons",
+            "approximately 5000 tons",
+            "approximately 5000 tons",
+            "5 tons",
+            "5 tons"
+        ],
+        "code": [
+            "def execute_command_2877255(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    machine_patch = image_patch.find(\"machine\")[0]\n    machine_name = machine_patch.visual_question_answering(\"What is this machine?\")\n    return formatting_answer(llm_query(f\"How heavy is {machine_name}?\", long_answer=False))"
+        ],
+        "id": 2877255,
+        "query": "How heavy is this machine?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000287725.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['no']",
+        "answer": [
+            "flip phone",
+            "flip phone",
+            "flip phone",
+            "flip phone",
+            "nokia",
+            "nokia",
+            "at and t",
+            "at and t",
+            "samsung",
+            "samsung"
+        ],
+        "code": [
+            "def execute_command_5469875(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    mobile_model = image_patch.visual_question_answering(\"What is the mobile model shown in this picture?\")\n    return formatting_answer(mobile_model)"
+        ],
+        "id": 5469875,
+        "query": "Name the mobile model shown in this picture?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000546987.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['clip-on tie']",
+        "answer": [
+            "clip on",
+            "clip on",
+            "clip on",
+            "clip on",
+            "bowtie",
+            "bowtie",
+            "bowtie",
+            "bowtie",
+            "clip on tie",
+            "clip on tie"
+        ],
+        "code": [
+            "def execute_command_2080505(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    tie_patch = image_patch.find(\"tie\")[0]\n    \n    # Ask the LLM for an alternative product to a tie\n    alternative_product = llm_query(\"If a tie has not been tied, what other easier alternative product is most likely used?\", long_answer=False)\n    \n    return formatting_answer(alternative_product)"
+        ],
+        "id": 2080505,
+        "query": "If this tie has not been tied what other easier alternative product is most likely used?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000208050.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.5999999999999999
+        ]
+    },
+    {
+        "result": "['nokia']",
+        "answer": [
+            "motorola",
+            "motorola",
+            "motorola",
+            "motorola",
+            "nokia",
+            "nokia",
+            "motorolla",
+            "motorolla",
+            "at and t",
+            "at and t"
+        ],
+        "code": [
+            "def execute_command_2583225(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    phone_patch = image_patch.find(\"cellular phone\")[0]\n    phone_name = phone_patch.visual_question_answering(\"What is this object?\")\n    manufacturer = llm_query(f\"Who manufactured this popular 1990's {phone_name}?\", long_answer=False)\n    return formatting_answer(manufacturer)"
+        ],
+        "id": 2583225,
+        "query": "Who manufactured this popular 1990's cellular phone?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000258322.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.6000000000000001
+        ]
+    },
+    {
+        "result": "['robin, robin, robin, robin, robin']",
+        "answer": [
+            "cardinal",
+            "cardinal",
+            "cardinal",
+            "cardinal",
+            "robin",
+            "robin",
+            "robin",
+            "robin",
+            "american robin",
+            "american robin"
+        ],
+        "code": [
+            "def execute_command_377055(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    bird_patches = image_patch.find(\"bird\")\n    \n    # Assuming that the species of the bird can be determined by visual question answering\n    species_list = []\n    for bird_patch in bird_patches:\n        species = bird_patch.visual_question_answering(\"What species is this bird?\")\n        species_list.append(species)\n    \n    return formatting_answer(species_list)"
+        ],
+        "id": 377055,
+        "query": "What species of birds are in the tree?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000037705.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.0
+        ]
+    },
+    {
+        "result": "['hay']",
+        "answer": [
+            "hay",
+            "hay",
+            "hay",
+            "hay",
+            "hay and oat",
+            "hay and oat",
+            "grain",
+            "grain",
+            "good",
+            "good"
+        ],
+        "code": [
+            "def execute_command_3036535(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    animal_patch = image_patch.find(\"animal\")[0]\n    animal_name = animal_patch.visual_question_answering(\"What is this animal?\")\n    return formatting_answer(llm_query(f\"What do you feed {animal_name}?\", long_answer=False))"
+        ],
+        "id": 3036535,
+        "query": "What do you feed this kind of animal?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000303653.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['roses']",
+        "answer": [
+            "rose",
+            "rose",
+            "rose",
+            "rose",
+            "rose",
+            "rose",
+            "carnation",
+            "carnation",
+            "carnation",
+            "carnation"
+        ],
+        "code": [
+            "def execute_command_2029285(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    flower_patch = image_patch.find(\"flower\")[0]\n    flower_name = flower_patch.visual_question_answering(\"What is this?\")\n    return formatting_answer(flower_name)"
+        ],
+        "id": 2029285,
+        "query": "What flowers are these?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000202928.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    },
+    {
+        "result": "['French Open']",
+        "answer": [
+            "wimbledon",
+            "wimbledon",
+            "wimbledon",
+            "wimbledon",
+            "french open",
+            "french open",
+            "wimbeldon",
+            "wimbeldon",
+            "wta tournament",
+            "wta tournament"
+        ],
+        "code": [
+            "def execute_command_2292075(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    query = \"What tennis championships are held on clay courts?\"\n    return formatting_answer(llm_query(query, long_answer=False))"
+        ],
+        "id": 2292075,
+        "query": "What tennis championships are held on clay courts?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000229207.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            0.6000000000000001
+        ]
+    },
+    {
+        "result": "['Sylvester']",
+        "answer": [
+            "sylvester",
+            "sylvester",
+            "sylvester",
+            "sylvester",
+            "sylvester",
+            "sylvester",
+            "sylvester",
+            "sylvester",
+            "sylvester",
+            "sylvester"
+        ],
+        "code": [
+            "def execute_command_1799545(image, possible_answers, query, ImagePatch, VideoSegment, formatting_answer, llm_query, bool_to_yesno, distance, best_image_match, process_guesses):\n    # Answer is:def execute_command(image, my_fig, time_wait_between_lines, syntax):\n    image_patch = ImagePatch(image)\n    animal_patch = image_patch.find(\"animal\")[0]\n    animal_color = animal_patch.visual_question_answering(\"What color is the animal?\")\n    animal_species = animal_patch.visual_question_answering(\"What species is the animal?\")\n    \n    looney_tunes_character = llm_query(f\"What is the name of the Looney Tunes character of the same species and color as a {animal_color} {animal_species}?\", long_answer=False)\n    \n    return formatting_answer(looney_tunes_character)"
+        ],
+        "id": 1799545,
+        "query": "What is the name of the looney tunes character of the same species and color as the animal in the picture?",
+        "img_path": "sample_okvqa/val2014/COCO_val2014_000000179954.jpg",
+        "possible_answers": [],
+        "accuracy": [
+            1.0
+        ]
+    }
+]
