@@ -354,7 +354,7 @@ class ImagePatch:
             return False
         return True
 
-    def llm_query(self, question: str, long_answer: bool = True) -> str:
+    def llm_query(self, question: str, long_answer: bool = False) -> str:
         return llm_query(question, None, long_answer)
 
     def print_image(self, size: tuple[int, int] = None):
@@ -457,7 +457,7 @@ def formatting_answer(answer, queues=None):
     #print (f"Program output: {final_answer}")
     return final_answer
 
-def llm_query(query, context=None, long_answer=True, queues=None):
+def llm_query(query, context=None, long_answer=False, queues=None):
     """Answers a text question using GPT-3. The input question is always a formatted string with a variable in it.
 
     Parameters

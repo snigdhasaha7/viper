@@ -1,0 +1,338 @@
+class ImagePatch:
+    """A Python class containing a crop of an image centered around a particular object , as well as relevant information .
+    Attributes
+    −−−−−−−−−− cropped_image : array_like
+    An array−like of the cropped image taken from the original image. left , lower, right , upper : int
+    An int describing the position of the ( left /lower/ right /upper) border of the crop’s bounding box in the original image. 
+    Methods
+    −−−−−−−
+    find(object_name: str)−>List[ImagePatch]
+        Returns a list of new ImagePatch objects containing crops of the image centered around any objects found in the
+        image matching the object_name. 
+    visual_question_answering ( question : str =None)−>str
+        Returns the answer to a basic question asked about the image. If no question is provided , returns the answer to "What is this ?". 
+    expand_patch_with_surrounding () −>ImagePatch
+        Returns a new ImagePatch object that contains the current ImagePatch and its surroundings . 
+    overlaps(patch: ImagePatch)−>Bool
+        Returns True if the current ImagePatch overlaps with another patch and False otherwise 
+    compute_depth()−> float
+        Returns the median depth of the image patch . The bigger the depth , the further the patch is from the camera."""
+
+    def __init__(self, image, left: int = None, lower: int = None, right: int = None, upper: int = None):
+        """Initializes an ImagePatch object by cropping the image at the given coordinates and stores the coordinates as
+        attributes. If no coordinates are provided, the image is left unmodified, and the coordinates are set to the
+        dimensions of the image.
+        Parameters
+        -------
+        image : PIL.Image
+            An array-like of the original image.
+        left, lower, right, upper : int
+            An int describing the position of the (left/lower/right/upper) border of the crop's bounding box in the original image.
+            The coordinates (y1,x1,y2,x2) are with respect to the upper left corner the original image.
+            To be closer with human perception, left , lower, right , upper are with respect to the lower left corner of the squared image.
+            Use left , lower , right , upper for downstream tasks 
+        """
+        self . original_image = image size_x, size_y = image.size
+        if left is None and right is None and upper is None and lower is None: 
+            self .x1 = 0
+            self .y1 = 0 
+            self .x2 = 999 
+            self .y2 = 999
+        else:
+            self .x1 = left
+            self .y1 = 999 − upper self .x2 = right
+            self .y2 = 999 − lower
+        
+        self.cropped_image = image.crop(( int ( self.x1/1000 * self.sz), int(self.y1/1000 * self.sz),
+                                        int(self.x2/1000*self.sz), int(self.y2/1000*self.sz)))
+
+        self.width = self.x2 − self.x1 
+        self.height = self.y2 − self.y1
+
+        # all coordinates use the upper left corner as the origin (0,0) .
+        # However, human perception uses the lower left corner as the origin .
+        # So, need to revert upper/lower for language model
+
+        self.left = self.x1
+        self.right = self.x2
+        self.upper = 999 − self.y1
+        self.lower = 999 − self.y2
+        self.horizontal_center = ( self.left + self.right ) / 2 
+        self.vertical_center = ( self.lower + self.upper) / 2
+        self.patch_description_string = f "{ self.y1} { self.x1} { self.y2} { self.x2}"
+
+    def __str__(self):
+        return self.patch_description_string
+
+    def compute_depth(self):
+        # compute the depth map on the full image. Returns a np. array with size 192*192 # Parameters
+        # −−−−−−−−−−
+        # Returns
+        # −−−−−−−
+        # float
+        #   the median depth of the image crop
+
+        # Examples
+        # −−−−−−−−
+
+        # >>> return the image patch of the bar furthest away 
+        # >>> def execute_command(image)−>ImagePatch:
+        # >>>   image_patch = ImagePatch(image)
+        # >>>   bar_patches = image_patch.find("bar")
+        # >>>   bar_patches.sort(key=lambda bar: bar.compute_depth())
+        # >>>   return bar_patches[-1]
+
+        return depth(self.cropped_image)
+
+    def find(self, object_name: str):
+        # Returns a list of ImagePatch objects matching object_name contained in the crop if any are found. 
+        # The object_name should be as simple as example, including only nouns
+        # Otherwise, returns an empty list .
+        # Note that the returned patches are not ordered
+        # Parameters 
+        # −−−−−−−−−− 
+        # object_name : str
+        #   the name of the object to be found
+        # Returns 
+        # −−−−−−−
+        # List [ImagePatch]
+        #   a list of ImagePatch objects matching object_name contained in the crop
+        # Examples
+        # −−−−−−−−
+        # >>> # find all the kids in the images
+        # >>> def execute_command(image) −> List[ImagePatch]: 
+        # >>>   image_patch = ImagePatch(image)
+        # >>>   kid_patches = image_patch.find("kid")
+        # >>>   return kid_patches
+    
+        print (f"Calling find function. Detect {object_name}.")
+        det_patches = detect(self.cropped_image, object_name)
+        print(f"Detection result : {’ and ’. join ([ str (d) + ’ ’ + object_name for d in det_patches ])}")
+
+        return det_patches
+
+    def expand_patch_with_surrounding(self):
+        # Expand the image patch to include the surroundings. Now done by keeping the center of the patch 
+        # and returns a patch with double width and height
+        # Examples 
+        # −−−−−−−
+        # >>> # How many kids are not sitting under an umbrella?
+        # >>> def execute_command(image):
+        # >>>   image_patch = ImagePatch(image) 
+        # >>>   kid_patches = image_patch.find("kid")
+
+        # >>>   # Find the kids that are under the umbrella.
+        # >>>   kids_not_under_umbrella = []
+        # >>>   for kid_patch in kid_patches:
+        # >>>       kid_with_surrounding = kid_patch.expand_patch_with_surrounding()
+        # >>>       if "yes" in kid_with_surrounding.visual_question_answering("Is the kid under the umbrella?"):
+        # >>>           print(f"the kid at {kid_patch} is sitting under an umbrella .")
+        # >>>       else:
+        # >>>           print(f"the kid at {kid_patch} is not sitting under an umbrella .")
+        # >>>           kids_not_under_umbrella.append(kid_patch )
+        
+        # >>>   # Count the number of kids under the umbrella .
+        # >>>   num_kids_not_under_umbrella = len(kids_not_under_umbrella)
+        
+        # >>>   return formatting_answer( str (num_kids_not_under_umbrella))
+
+        new_left = max(self.left − self.width / 2, 0) 
+        new_right = min(self.right + self.width / 2, 999) 
+        new_lower = max(self.lower − self.height / 2,0) 
+        new_upper = min(self.upper + self.height / 2, 999)
+
+        return ImagePatch(self.original_image, new_left, new_lower,new_right, new_upper)
+
+    def visual_question_answering(self, question: str = None) -> str:
+        # Returns the answer to a basic question asked about the image.
+        # The questions are about basic perception , and are not meant to be used for complex reasoning
+        # or external knowledge.
+        # Parameters
+        # −−−−−−−
+        # question : str
+        #   A string describing the question to be asked.
+        # Examples
+        # −−−−−−−
+
+        # >>> # What is the name of the player in this picture ? 
+        # >>> def execute_command(image) −> str:
+        # >>>   image_patch = ImagePatch(image)
+        # >>>   return formatting_answer(image_patch.visual_question_answering("What is the name of the player?"))
+
+        # >>> # What color is the foo?
+        # >>> def execute_command(image) −> str:
+        # >>>   image_patch = ImagePatch(image)
+        # >>>   return formatting_answer(foo_patch.visual_question_answering("What color is the foo?"))
+
+        # >>> # What country serves this kind of food the most?
+        # >>> def execute_command(image) −> str:
+        # >>>   image_patch = ImagePatch(image)
+        # >>>   food_name = image_patch.visual_question_answering(" What kind of food is served ?")
+        # >>>   country = llm_query(f"What country serves {food_name} most?")
+        # >>>   return formatting_answer(country)
+
+        # >>> # Is the second bar from the left quuxy?
+        # >>> def execute_command(image) −> str:
+        # >>>   image_patch = ImagePatch(image)
+        # >>>   bar_patches = image_patch.find("bar")
+        # >>>   bar_patches.sort(key=lambda x: x.horizontal_center)
+        # >>>   bar_patch = bar_patches[1]
+        # >>>   return formatting_answer(bar_patch.visual_question_answering("Is the bar quuxy?"))
+
+        answer = vqa( self . cropped_image, question )
+        print (f"Calling visual_question_answering function .") 
+        print(f"Question: {question}")
+        print (f"Answer: {answer}")
+        return answer
+    
+    def overlaps ( self , patch ) −> bool :
+        # check if another image patch overlaps with this image patch
+        # if patch overlaps with current patch, return True. Otherwise return False
+
+        if patch.right < self.left or self.right < patch.left: 
+            return False
+        if patch.lower > self.upper or self.lower > patch.upper:
+            return False
+        return True
+
+def llm_query(question: str) -> str:
+    """
+    Answers a text question using a large language model (LLM). 
+    This method is designed for textual questions that do not require viewing or analyzing the image or image patches directly. It purely interprets and responds based on the text of the question.
+    The input question is always a formatted string with a variable in it.
+    
+    Parameters
+    ----------
+    question : str
+        The text question to ask. The question should be formulated such that it does not rely on specific visual details of the image,
+        as the LLM does not process the image content. Must not contain any reference to ’ the image’ or ’ the photo ’, etc.
+
+    Returns
+    -------
+    str
+        The answer to the question as generated by the LLM.
+
+    Examples
+    --------
+    # >>> # What is the city this building is in? 
+    # >>> def execute_command(image) −> str:
+    # >>>   image_patch = ImagePatch(image)
+    # >>>   building_name = building_patch.visual_question_answering("What is the name of the building ?")
+    # >>> return formatting_answer(llm_query(f"What city is {building_name} in ?"))
+
+    # >>> # Who invented this object ?
+    # >>> def execute_command(image) −> str:
+    # >>>   image_patch = ImagePatch(image)
+    # >>>   object_name = object_patch.visual_question_answering("What is this object ?")
+    # >>>   return formatting_answer(llm_query(f"Who invented {object_name}?"))
+
+    # >>> # Explain the history behind this object.
+    # >>> def execute_command(image) −> str:
+    # >>>   image_patch = ImagePatch(image)
+    # >>>   object_name = object_patch.visual_question_answering("What is the object ?")
+    # >>>   return formatting_answer(llm_query(f"What is the history behind {object_name}?"))
+    
+
+    return llm_query(question)
+
+def distance(patch_a: ImagePatch, patch_b: ImagePatch) -> float:
+    """
+    Returns the distance between the edges of two ImagePatches. If the patches overlap, it returns a negative distance
+    corresponding to the negative intersection over union.
+
+    Parameters
+    ----------
+    patch_a : ImagePatch
+    patch_b : ImagePatch
+
+    Examples
+    --------
+    # Return the qux that is closest to the foo
+    >>> def execute_command(image):
+    >>>     image_patch = ImagePatch(image)
+    >>>     qux_patches = image_patch.find('qux')
+    >>>     foo_patches = image_patch.find('foo')
+    >>>     foo_patch = foo_patches[0]
+    >>>     qux_patches.sort(key=lambda x: distance(x, foo_patch))
+    >>>     return qux_patches[0]
+    """
+    return distance(patch_a, patch_b)
+
+def formatting_answer(answer) −> str:
+    # Formatting the answer into a string that follows the task’s requirement
+    # For example, it changes bool value to "yes" or "no", and clean up long answer into short ones. 
+    # This function should be used at the end of each program
+    
+    final_answer = ""
+    if isinstance(answer, str ):
+        final_answer = answer.strip()
+    elif isinstance(answer, bool):
+        final_answer = "yes" if answer else "no"
+    elif isinstance(answer, list):
+        final_answer = ", ".join([ str(x) for x in answer]) 
+    else:
+        final_answer = str(answer)
+
+    print (f"Program output: {final_answer}")
+    return final_answer
+
+
+
+Given an image and a query, write 5 versions of the function execute_command using Python and the ImagePatch class (above), 
+and the other functions above that could be executed to provide an answer to the query.
+The functions should be diverse. That is, each function should be different from the previous. Generate them in a sequence,
+and for each subsequent program, make it different from the previous. 
+
+Consider the following guidelines :
+− Use base Python (comparison, sorting ) for basic logical operations , left / right /up/down, math, etc .
+− Use the llm_query function to access external information and answer informational questions NOT concerning the image. 
+− The program should print out the intermediate traces as it runs . So add print function in the program if needed.
+
+For usual cases, follow the guidelines below:
+− For simple visual queries , directly call visual_question_answering to get the answer.
+− For queries that need world knowledge, commonsense knowledge, and language reasoning, use visual_question_answering and llm_query.
+− For queries that require counting and spatical relations , in addition to the above functions , use find function to help getting the answer.
+− For queries involve "behind" and " front " , consider using compute_depth function .
+
+Return ONLY the execute_command function and nothing else.
+
+Some examples:
+    Image description : a woman is walking several dogs Query: how many dogs are to left of the person? Function :
+    def execute_command(image):
+        image_patch = ImagePatch(image)
+        person_patch = image_patch.find("person")[0] 
+        dog_patches = image_patch.find("dog")
+        
+        # Count the number of dogs whose leftmost x−coordinate is less than the person.
+        num_dogs_left = 0
+        for dog_patch in dog_patches:
+            if dog_patch.left < person_patch.horizontal_center:
+                print(f"dog at {dog_patch} is on the left of human.")
+                num_dogs_left += 1
+        
+        return formatting_answer(num_dogs_left)
+
+Generate your answers as follows. Do not provide any additional information besides the following format
+filled in with the generated code snippets:
+
+# CODE_SNIPPET_1:
+def execute_command(image)->str:
+    <insert code here>
+
+# CODE_SNIPPET_2:
+def execute_command(image)->str:
+    <insert code here>
+
+# CODE_SNIPPET_3:
+def execute_command(image)->str:
+    <insert code here>
+
+# CODE_SNIPPET_4:
+def execute_command(image)->str:
+    <insert code here>
+
+# CODE_SNIPPET_5:
+def execute_command(image)->str:
+    <insert code here>
+
+Query: INSERT_QUERY_HERE

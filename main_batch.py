@@ -98,7 +98,7 @@ def run_program(parameters, queues_in_, input_type_, retrying=False):
     # libraries for some reason. Because defining it globally is not ideal, we just delete it after running it.
     if f'execute_command_{sample_id}' in globals():
         del globals()[f'execute_command_{sample_id}']  # If it failed to compile the code, it won't be defined
-    result = llm_query(f'Reword {result} into a single word or a phrase. If it is already a single word or a phrase, return it as is.', long_answer=False)
+    #result = llm_query(f'Reword {result} into a single word or a phrase. If it is already a single word or a phrase, return it as is.', long_answer=False)
     return result, code
 
 

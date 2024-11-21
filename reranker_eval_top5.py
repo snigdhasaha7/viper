@@ -7,7 +7,7 @@ dataset = OKVQADataset(dataset_name='OKVQA', data_path='sample_okvqa', split='te
                         image_transforms=transforms.Compose([transforms.ToTensor()]))
 
 
-rerank_file = 'top5_rerank_6.json'
+rerank_file = 'top5_rerank_12.json'
 with open(f'rerank_results/{rerank_file}', 'r') as f:
     data = json.load(f) 
 
@@ -43,5 +43,5 @@ for d in data:
     accuracy += dataset.accuracy(top_ans, gt)
 
 print(f'Accuracy: {accuracy / len(data)}')
-with open('rerank_results/top5_fail.json', 'w') as f:
+with open('rerank_results/top5_fail_12.json', 'w') as f:
     json.dump(failure_modes, f)

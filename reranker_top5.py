@@ -19,7 +19,7 @@ prompt_file = 'rerank_top5.prompt'
 with open(f'prompts/{prompt_file}') as f:
     base_prompt = f.read().strip()
 
-result_file = 'results_6.json'
+result_file = 'results_12.json'
 
 with open(f'results/okvqav2/test/{result_file}', 'r') as f:
     top1data = json.load(f)
@@ -84,7 +84,8 @@ for data in tqdm.tqdm(top1data):
         ans5 = text[ans5_ind+3:].strip()
         reranked_answers = [ans1, ans2, ans3, ans4, ans5]
         
-    except:
+    except Exception as e:
+        print(e)
         print(text)
         continue
 
@@ -99,7 +100,7 @@ for data in tqdm.tqdm(top1data):
     })
 
 save_dir = 'rerank_results'
-save_file = 'top5_rerank_6.json'
+save_file = 'top5_rerank_12.json'
 with open(f'{save_dir}/{save_file}', 'w') as f:
     json.dump(rerank_scores, f)
 

@@ -7,13 +7,18 @@ The score should range from 0 to 10, with decimals allowed. A score of 0 implies
 is completely wrong. A score of 10 implies that the answer is perfect, answering the query
 correctly with the context of the image. 
 
+Penalize answers that are too long. Shorter answers should be given higher scores. Answers that are too long but 
+seem correct should be penalized for being too long.
+
 If an answer is "Execution Failure", treat this is as a failure to answer the question sufficiently. Such an answer should have a low score and thus a low rank.
 
 Then, once you have a score for each answer, rerank the answers from 1 (highest scoring) to 5 (lowest scoring).
 Note, there may be ties or equivalent answers. Please still rank them from 1 to 5. 
 
 *IMPORTANT*
-Format your response into two lines as shown below. When ranking an answer, only provide the rank, the answer, and the score. Do not provide any enumeration from the input (such as Answer1):
+Format your response into two lines as shown below. When ranking an answer, only provide the rank, the answer, and the score. 
+Make sure to number the answers from 1 to 5. Multiple answers may have the same score, but you must return the answers numbered from 1 to 5.
+Do not provide any enumeration from the input (such as Answer1):
 
 Thoughts: <your thoughts and justification>
 Reranked_answers: 
