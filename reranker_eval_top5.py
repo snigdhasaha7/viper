@@ -22,11 +22,14 @@ for d in data:
     original_answers = d['answers']
     max_score = 0
     max_ans = ""
+    all_0 = True
     for answer in original_answers:
         if answer == 'Execution Failure':
             continue 
         score = dataset.get_item_score(answer, gt[0])
-        if score > max_score:
+        if score != 0:
+            all_0 = False
+        if score >= max_score:
             max_score = score
             max_ans = answer 
 
@@ -37,6 +40,8 @@ for d in data:
             'top_answer_gpt': top_ans[0][0],
             'ranked': reranked,
             'top_ans_eval': max_ans, 
+            'top_ans_score': max_score,
+            'all_0': all_0,
             'gt': gt
         })
 
