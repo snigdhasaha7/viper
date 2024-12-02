@@ -1,0 +1,8 @@
+I have an image and a question that I want you to answer. Outline a step-by-step thought process you would use to answer the question based on the image.
+
+Separate your thought process and answer with a label as follows:
+
+THOUGHT_PROCESS: <your thought process>
+ANSWER: <your answer> 
+
+Query: INSERT_QUERY_HERE
