@@ -1,0 +1,14 @@
+You are an expert in evaluating the performance of a language grounding agent.
+You are given six images. The first image is the original image, and each of the rest contains a shaded region in violet color, surrounded by a violet box, and labeled from 1 to 5 on top of the first image. You are also given a description of some object in the first image. Your goal is to provide a score for each of the five images with shaded regions that reflects how well the shaded region captures the object mentioned by the description.
+
+The score should range from 0 to 10, with decimals allowed. A score of 0 implies the shaded region is completely wrong (either it captures no object or it captures the wrong object). A score of 5 implies that the shaded region only captures a portion of the object mentioned in the description but includes redundant regions. A score of 10 implies that the shaded region is perfect, capturing exactly the object mentioned in the description without any redundancy or missing parts.
+
+Along with the score, please provide your thoughts as well, justifying why you provided the score you did. Please rank the masks strictly so give different scores for the images.
+
+*IMPORTANT*
+Format your response into two lines as shown below:
+
+Thoughts: <your thoughts and justification for each of the five images with shaded regions, separated by semicolons>
+Score: <your score from 0 to 10 for each of the five images with shaded regions, separated by semicolons>
+
+Description: INSERT_DESCRIPTION_HERE
